@@ -1,18 +1,8 @@
 defmodule Alov do
-  @moduledoc """
-  Documentation for `Alov`.
-  """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Alov.hello()
-      :world
-
-  """
+  import MyXQL
   def hello do
-    :world
+    {:ok, result} = query(:myxql, "SELECT * from users")
+    IO.puts(result.columns)
+    hello()
   end
 end
