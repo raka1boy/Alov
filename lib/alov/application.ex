@@ -7,7 +7,8 @@ defmodule Alov.Application do
      ]
 
     opts = [strategy: :one_for_one, name: Alov.Supervisor]
-    Supervisor.start_link(children, opts)
+    res = Supervisor.start_link(children, opts)
     Alov.hello
+    res
   end
 end
