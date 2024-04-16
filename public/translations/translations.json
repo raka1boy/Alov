@@ -1,0 +1,48 @@
+{
+	"en": {
+		"header": {
+			"menu_button": "Menu"
+		},
+		"main_menu": {
+			"catalog": "Catalog",
+			"buyers": "For buyers",
+			"contacts": "Contacts",
+			"lighters": "Lighters",
+			"all": "All Catalog",
+			"about": "About",
+			"blog": "Blog",
+			"shipping": "Shipping and payment",
+			"returns": "Purchase returns",
+			"tg": "Telegram",
+			"vk": "VKontakte"
+		},
+		"comparison": {
+			"gasLighter": "Gas lighter",
+			"petrolLighter": "Petrol lighter",
+			"electricLighter": "Electric lighter"
+		}
+	},
+	"ru": {
+		"header": {
+			"menu_button": "Меню"
+		},
+		"main_menu": {
+			"catalog": "Каталог",
+			"buyers": "Покупателям",
+			"contacts": "Контакты",
+			"lighters": "Зажигалки",
+			"all": "Весь каталог",
+			"about": "О нас",
+			"blog": "Блог",
+			"shipping": "Доставка и оплата",
+			"returns": "Возврат товара",
+			"tg": "Телеграм",
+			"vk": "ВКонтакте"
+		},
+		"comparison": {
+			"gasLighter": "Газовая зажигалка",
+			"petrolLighter": "Бензиновая зажигалка",
+			"electricLighter": "Электрическая зажигалка"
+		}
+	}
+}
