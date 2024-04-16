@@ -1,18 +1,8 @@
 defmodule Alov do
-  @moduledoc """
-  Documentation for `Alov`.
-  """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Alov.hello()
-      :world
-
-  """
+  require MyXQL
+  require Db
+  require User
   def hello do
-    :world
+
   end
 end
