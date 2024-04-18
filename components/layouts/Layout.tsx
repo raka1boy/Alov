@@ -8,6 +8,7 @@ import MobileNavbar from '../modules/MobileNavbar/MobileNavbar';
 import SearchModal from '../modules/Header/SearchModal';
 import { $searchModalIsOpen, closeSearchModal } from '@/context/modal';
 import { handleCloseModal } from '@/lib/utils/common'
+import Footer from '../modules/Footer/Footer'
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 	const isMedia800 = useMediaQuery(800);
@@ -35,7 +36,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 				})}
 				onClick={() => handleCloseModal(closeSearchModal)}
 			/>
-			<div className='' />
+			<Footer/>
 		</>
 	);
 };

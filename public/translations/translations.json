@@ -47,7 +47,12 @@
     },
 		"order": {
 			"make_order": "Make Order"
-		}
+		},
+		"footer": {
+      "copyright": "«Alov» All rights reserved",
+      "policy": "Data processing policy",
+      "privacy": "Privacy policy"
+    }
 	},
 	"ru": {
 		"common": {
@@ -97,6 +102,11 @@
     },
 		"order": {
 			"make_order": "Оформить заказ"
-		}
+		},
+		"footer": {
+      "copyright": "«Алов» Все права защищены",
+      "policy": "Политика обработки данных",
+      "privacy": "Политика конфиденциальности"
+    }
 	}
 }
