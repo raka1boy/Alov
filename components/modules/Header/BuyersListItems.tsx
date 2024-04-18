@@ -7,22 +7,34 @@ const BuyersListItems = () => {
 	return (
 		<>
 			<li className='accordion__item'>
-				<Link href='/about' className='accordion__title nav-menu__link'>
+				<Link
+					href='/about'
+					className='accordion__title nav-menu__link'
+					aria-label='Открыть вкладку "О нас"'>
 					{translations[lang].main_menu.about}
 				</Link>
 			</li>
 			<li className='accordion__item'>
-				<Link href='/blog' className='nav-menu__link'>
+				<Link
+					href='/blog'
+					className='nav-menu__link'
+					aria-label='Открыть вкладку "Блог"'>
 					{translations[lang].main_menu.blog}
 				</Link>
 			</li>
 			<li className='accordion__item'>
-				<Link href='/shipping-and-payment' className='nav-menu__link'>
+				<Link
+					href='/shipping-and-payment'
+					className='nav-menu__link'
+					aria-label='Открыть вкладку "Доставка и оплата"'>
 					{translations[lang].main_menu.shipping}
 				</Link>
 			</li>
-			<li className='accrodion__item'>
-				<Link href='/purchase-returns' className='nav-menu__link'>
+			<li className='accordion__item'>
+				<Link
+					href='/purchase-returns'
+					className='nav-menu__link'
+					aria-label='Открыть вкладку "Возврат товара"'>
 					{translations[lang].main_menu.returns}
 				</Link>
 			</li>
@@ -30,4 +42,4 @@ const BuyersListItems = () => {
 	);
 };
 
-export default BuyersListItems
+export default BuyersListItems;

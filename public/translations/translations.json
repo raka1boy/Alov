@@ -1,7 +1,13 @@
 {
 	"en": {
+		"common": {
+			"more": "More",
+			"order_price": "Order Price"
+		},
 		"header": {
-			"menu_button": "Menu"
+			"menu_button": "Menu",
+			"search_products": "Search Products",
+      "search_infos": "Product name, category, type..."
 		},
 		"main_menu": {
 			"catalog": "Catalog",
@@ -17,14 +23,41 @@
 			"vk": "VKontakte"
 		},
 		"comparison": {
-			"gasLighter": "Gas lighter",
-			"petrolLighter": "Petrol lighter",
-			"electricLighter": "Electric lighter"
+			"flintLighters": "Flint lighters",
+			"piezoLighters": "Piezo lighters",
+			"turboChargedLighters": "Turbocharged lighters",
+			"jetFlames": "Jet Flame",
+			"piezoFlashlights": "Piezo Flashlight",
+			"turboChargedFlashlights": "Turbocharged Flashlight",
+			"metalFlintLights": "Metal-Flint lighters",
+			"metalTurboChargedLighters": "Metal-Turbocharged lighters",
+			"metalJets": "Metal Jet"
+		},
+		"breadcrumbs": {
+      "main": "Main",
+      "comparison": "Comparison",
+      "cart": "Cart",
+      "favorites": "Favorites",
+      "catalog": "Catalog",
+      "profile": "Profile",
+      "lighters": "Lighters",
+      "order": "Placing an order",
+      "personal_data_policy": "Data processing policy",
+      "privacy_policy": "Privacy policy"
+    },
+		"order": {
+			"make_order": "Make Order"
 		}
 	},
 	"ru": {
+		"common": {
+			"more": "Ещё",
+			"order_price": "Сумма заказа"
+		},
 		"header": {
-			"menu_button": "Меню"
+			"menu_button": "Меню",
+			"search_products": "Поиск товаров",
+			"search_infos": "Название товара, категория, тип..."
 		},
 		"main_menu": {
 			"catalog": "Каталог",
@@ -40,9 +73,30 @@
 			"vk": "ВКонтакте"
 		},
 		"comparison": {
-			"gasLighter": "Газовая зажигалка",
-			"petrolLighter": "Бензиновая зажигалка",
-			"electricLighter": "Электрическая зажигалка"
+			"flintLighters": "Кремниевые зажигалки",
+			"piezolLighters": "Пьезовые зажигалки",
+			"turboChargedLighters": "Турбированные зажигалки",
+			"jetFlames": "Джет Пламя",
+			"piezoFlashlights": "Пьезо Фонарик",
+			"turboChargedFlashlights": "Турбо Фонарик",
+			"metalFlintLights": "Металлическо-кремниевые зажигалки",
+			"metalTurboChargedLighters": "Металлическо-турбированные зажигалки",
+			"metalJets": "Металлический Джетт"
+		},
+    "breadcrumbs": {
+      "main": "Главная",
+      "comparison": "Сравнение",
+      "cart": "Корзина",
+      "favorites": "Избранное",
+      "catalog": "Каталог",
+      "profile": "Профиль",
+      "lighters": "Зажигалки",
+      "order": "Оформление заказа",
+      "personal_data_policy": "Политика обработки данных",
+      "privacy_policy": "Политика конфиденциальности"
+    },
+		"order": {
+			"make_order": "Оформить заказ"
 		}
 	}
 }

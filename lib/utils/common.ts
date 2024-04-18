@@ -3,13 +3,19 @@ export const removeOverflowHiddenFromBody = () => {
 	body.classList.remove('overflow-hidden');
 };
 
-export const addOverflowHiddenFromBody = () => {
+export const addOverflowHiddenToBody = (paddingInlineEnd = '') => {
 	const body = document.querySelector('body') as HTMLBodyElement;
 	body.classList.add('overflow-hidden');
+	paddingInlineEnd && (body.style.paddingInlineEnd = paddingInlineEnd);
 };
 
 export const getWindowWidth = () => {
 	const { innerWidth: windowWidth } =
 		typeof window !== 'undefined' ? window : { innerWidth: 0 };
 	return { windowWidth };
+};
+
+export const handleCloseModal = (closeModalFunc: VoidFunction) => {
+	closeModalFunc();
+	removeOverflowHiddenFromBody();
 };

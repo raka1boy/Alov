@@ -21,7 +21,7 @@ const ContactsListItems = () => {
 					{translations[lang].main_menu.tg}
 				</Link>
 			</li>
-			<li className='accrodion__item'>
+			<li className='accordion__item'>
 				<Link href='https://vk.com/' className='nav-menu__link'>
 					{translations[lang].main_menu.vk}
 				</Link>

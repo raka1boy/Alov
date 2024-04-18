@@ -3,10 +3,9 @@ import { useLang } from '@/hooks/useLang';
 
 import { useUnit } from 'effector-react';
 import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import { clsx } from 'clsx';
-
-import { AnimatePresence, motion } from 'framer-motion';
 
 import { removeOverflowHiddenFromBody } from '@/lib/utils/common';
 import { setLang } from '@/context/lang';
@@ -15,7 +14,7 @@ import Logo from '@/components/elements/Logo/Logo';
 import Accordion from '../Accordion/Accordion';
 import { usePathname } from 'next/navigation';
 import MenuLinkItem from './MenuLinkItem';
-import { TListName } from '@/types/modules';
+import { TListName } from '@/types/types';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import BuyersListItems from './BuyersListItems';
 import ContactsListItems from './ContactsListItems';
@@ -42,6 +41,7 @@ const Menu = () => {
 	const handleCloseMenu = () => {
 		removeOverflowHiddenFromBody();
 		closeMenu();
+		handleShowList(false);
 	};
 
 	const handleRedirectToCatalog = (path: string) => {
@@ -61,18 +61,43 @@ const Menu = () => {
 	const lightersLinks = [
 		{
 			id: 1,
-			text: translations[lang].comparison.gasLighter,
-			href: '/catalog/lighters?offset=0&type=gas-lighter',
+			text: translations[lang].comparison.flintLighters,
+			href: '/catalog/lighters?offset=0&type=flint-lighter',
 		},
 		{
 			id: 2,
-			text: translations[lang].comparison.petrolLighter,
-			href: '/catalog/cloth?offset=0&type=petrol-lighter',
+			text: translations[lang].comparison.jetFlames,
+			href: '/catalog/cloth?offset=0&type=jet-flame',
 		},
 		{
 			id: 3,
-			text: translations[lang].comparison.electricLighter,
-			href: '/catalog/cloth?offset=0&type=electric-lighter',
+			text: translations[lang].comparison.metalFlintLights,
+			href: '/catalog/cloth?offset=0&type=metal-flint-light',
+		},
+		{
+			id: 4,
+			text: translations[lang].comparison.metalJets,
+			href: '/catalog/cloth?offset=0&type=metal-jet',
+		},
+		{
+			id: 5,
+			text: translations[lang].comparison.metalTurboChargedLighters,
+			href: '/catalog/cloth?offset=0&type=metal-turbocharged-lighter',
+		},
+		{
+			id: 6,
+			text: translations[lang].comparison.piezoFlashlights,
+			href: '/catalog/cloth?offset=0&type=piezo-flashlight',
+		},
+		{
+			id: 7,
+			text: translations[lang].comparison.turboChargedFlashlights,
+			href: '/catalog/cloth?offset=0&type=turbocharged-flashlight',
+		},
+		{
+			id: 8,
+			text: translations[lang].comparison.turboChargedLighters,
+			href: '/catalog/cloth?offset=0&type=turbocharged-lighter',
 		},
 	];
 
@@ -96,7 +121,7 @@ const Menu = () => {
 						['nav-menu__bg']: true,
 						['open']: menuIsOpen,
 					})}
-					src={`/img/menu-bg${isMedia800? '-small': ''}.png`}
+					src={`/img/menu-bg${isMedia800 ? '-small' : ''}.png`}
 					alt='background for menu'
 				/>
 				<button
@@ -105,6 +130,7 @@ const Menu = () => {
 						['open']: menuIsOpen,
 					})}
 					onClick={handleCloseMenu}
+					aria-label='Закрыть менюшку'
 				/>
 				<div
 					className={clsx({
@@ -115,8 +141,10 @@ const Menu = () => {
 						className={clsx({
 							['button-reset nav-menu__button']: true,
 							['lang-active']: lang === 'ru',
-						})}
-						onClick={() => toggleSwitchLang('ru')}>
+						})
+					}
+						onClick={() => toggleSwitchLang('ru')}
+						aria-label='Поменять язык на русский'>
 						RU
 					</button>
 					<button
@@ -124,7 +152,8 @@ const Menu = () => {
 							['button-reset nav-menu__button']: true,
 							['lang-active']: lang === 'en',
 						})}
-						onClick={() => toggleSwitchLang('en')}>
+						onClick={() => toggleSwitchLang('en')}
+						aria-label='Поменять язык на английский'>
 						EN
 					</button>
 				</div>
@@ -137,7 +166,8 @@ const Menu = () => {
 						<li className='nav-menu__item'>
 							<button
 								className='button-reset list__button'
-								onMouseEnter={() => handleShowList('catalog')}>
+								onMouseEnter={() => handleShowList('catalog')}
+								aria-label='Показать каталог'>
 								{translations[lang].main_menu.catalog}
 							</button>
 							<AnimatePresence>
@@ -171,7 +201,8 @@ const Menu = () => {
 						{!isMedia640 && (
 							<button
 								className='button-reset list__button'
-								onMouseEnter={() => handleShowList('buyers')}>
+								onMouseEnter={() => handleShowList('buyers')}
+								aria-label='Показать модуль "Покупателям"'>
 								{translations[lang].main_menu.buyers}
 							</button>
 						)}
@@ -202,7 +233,8 @@ const Menu = () => {
 						{!isMedia640 && (
 							<button
 								className='button-reset list__button'
-								onMouseEnter={() => handleShowList('contacts')}>
+								onMouseEnter={() => handleShowList('contacts')}
+								aria-label='Показать модуль "Контакты"'>
 								{translations[lang].main_menu.contacts}
 							</button>
 						)}

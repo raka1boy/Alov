@@ -13,7 +13,8 @@ const MenuLinkItem = ({
 			<Link
 				href={item.href}
 				className='accordion__link'
-				onClick={onRedirect}>
+				onClick={onRedirect}
+				aria-label='Перейти на товар'>
 				{item.text}
 			</Link>
 		</li>

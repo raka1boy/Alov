@@ -1,0 +1,106 @@
+.search-modal {
+	position: fixed;
+	top: 50px;
+	left: 50%;
+	min-inline-size: 850px;
+	block-size: 570px;
+	transform: translateX(-50%);
+	background-color: #333a47;
+	padding: 24px;
+	z-index: 101;
+}
+
+@media (max-width: 940px) {
+	.search-modal {
+		min-inline-size: auto;
+		inline-size: 700px;
+	}
+}
+
+@media (max-width: 780px) {
+	.search-modal {
+		inline-size: 530px;
+	}
+}
+
+@media (max-width: 590px) {
+	.search-modal {
+		inline-size: 370px;
+		padding: 12px;
+	}
+}
+
+@media (max-width: 420px) {
+	.search-modal {
+		inline-size: 300px;
+	}
+}
+
+.search-modal__close {
+	position: absolute;
+	top: 24px;
+	right: 24px;
+	inline-size: 24px;
+	block-size: 24px;
+	background-image: url(/svg/close-small.svg);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+@media (max-width: 590px) {
+	.search-modal__close {
+		top: 12px;
+		right: 12px;
+	}
+}
+
+.search-modal__title {
+	margin: 0 0 24px;
+	text-align: center;
+}
+
+.search-modal__top {
+	margin-block-end: 24px;
+	overflow: hidden;
+}
+
+.search-modal__label {
+	display: block;
+	position: relative;
+	inline-size: 100%;
+	margin-block-end: 20px;
+}
+
+.search-modal__input {
+	inline-size: 100%;
+	block-size: 48px;
+	padding-inline-start: 20px;
+	border: none;
+	background: rgba(255, 255, 255, 0.06);
+	overflow: hidden;
+	color: rgba(255, 255, 255, 0.9);
+	padding-top: 18px;
+}
+
+.search-modal__floating-label {
+	position: absolute;
+	left: 20px;
+	top: 12px;
+	pointer-events: none;
+	color: rgba(255, 255, 255, 0.4);
+	transition:
+		top 0.2s ease-in-out,
+		font-size 0.2s ease-in-out,
+		color 0.2s ease-in-out;
+}
+
+.search-modal__input.with_value + .search-modal__floating-label {
+	top: 4px;
+	bottom: 10px;
+	font-size: 12px;
+	transition:
+		top 0.2s ease-in-out,
+		font-size 0.2s ease-in-out,
+		color 0.2s ease-in-out;
+	color: #9466ff;
+}
