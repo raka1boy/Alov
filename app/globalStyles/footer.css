@@ -145,6 +145,7 @@
 }
 
 @media (max-width: 950px) {
+
 	.footer__links {
 		padding-block-start: 0;
 		inline-size: auto;
@@ -174,12 +175,14 @@
 }
 
 @media (max-width: 800px) {
+
 	.footer__bottom {
 		padding-block-end: 100px;
 	}
 }
 
 @media (max-width: 640px) {
+
 	.footer__top__container {
 		flex-direction: column;
 	}
