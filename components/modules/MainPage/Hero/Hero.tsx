@@ -44,7 +44,6 @@ const Hero = () => {
 				{translations[lang].main_page.hero_hidden_title}
 			</h1>
 			<div className={`container ${styles.hero__container}`}>
-				<span className={stylesForAd.ad}>{translations[lang].common.ad}</span>
 				<Swiper
 					className={styles.hero__slider}
 					effect='coverflow'

@@ -19,7 +19,7 @@ const MainSlider = ({
 	const isMedia420 = useMediaQuery(420);
 	const { handleLoadingImageComplete, imgSpinner } = useImagePreloader();
 	const imgSpinnerClass = imgSpinner ? styles.img_loading : '';
-	const settings = {
+	const sliderSettings = {
 		dots: false,
 		infinite: true,
 		slidesToScroll: 1,
@@ -41,7 +41,7 @@ const MainSlider = ({
 	}, [isMedia420]);
 
 	return (
-		<Slider {...settings} className={styles.categories__slider}>
+		<Slider {...sliderSettings} className={styles.categories__slider}>
 			{images.map((item) => (
 				<Link
 					key={item.id}
