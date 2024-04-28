@@ -13,7 +13,7 @@
 	inline-size: 100%;
 	min-block-size: 100%;
 	padding: 88px 24px;
-	background-color: #101828;
+	background-color: #faf7f7;
 	background-image: url(/img/menu-bg-small.png);
 	background-repeat: no-repeat;
 	background-position: top 90px right;
@@ -45,7 +45,7 @@
 
 .catalog-menu__title {
 	margin-block-end: 32px;
-	color: #e8e9ea;
+	color: #424242;
 	font-size: 28px;
 	font-weight: 700;
 }
@@ -64,7 +64,7 @@
 }
 
 .catalog-menu__item__btn {
-	color: #777c85;
+	color: #424242;
 	font-size: 16px;
 	text-decoration: none;
 }

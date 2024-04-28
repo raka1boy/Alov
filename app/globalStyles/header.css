@@ -1,9 +1,9 @@
 .header {
 	position: relative;
 	z-index: 3;
-	background-color: #1d2533;
+	background-color: #ffffff;
 	box-shadow:
-		0 2px 4px 0 rgb(0 0 0 / 0.2),
+		0 2px 4px 0 rgb(0 0 0 / 0.3),
 		0 0 8px 0 rgb(0 0 0 / 0.1);
 }
 
@@ -41,7 +41,7 @@
 	top: 0;
 	block-size: 100%;
 	inline-size: 100%;
-	background-color: #e8e9ea;
+	background-color: #424242;
 	transition: background-color 0.2s ease-in-out;
 }
 
@@ -53,11 +53,6 @@
 .header__button--favorites::before {
 	-webkit-mask: url(/svg/favorites.svg) no-repeat 50% 50%;
 	mask: url(/svg/favorites.svg) no-repeat 50% 50%;
-}
-
-.header__button--comparison::before {
-	-webkit-mask: url(/svg/comparison.svg) no-repeat 50% 50%;
-	mask: url(/svg/comparison.svg) no-repeat 50% 50%;
 }
 
 .header__button--cart::before {
@@ -72,7 +67,7 @@
 
 .header__button:hover::before {
 	transition: background-color 0.2s ease-in-out;
-	background-color: #9466ff;
+	background-color: #f9932c;
 }
 
 .header__button {
@@ -94,7 +89,7 @@
 }
 
 .header__burger {
-	color: #e8e9ea;
+	color: #424242;
 	font-size: 24px;
 	transition: 0.2s ease-in-out color;
 	font-weight: 500;
@@ -102,7 +97,7 @@
 
 .header__burger::before {
 	content: '';
-	background-color: #e8e9ea;
+	background-color: #424242;
 	block-size: 25px;
 	inline-size: 25px;
 	left: 3px;
@@ -116,11 +111,11 @@
 .header__burger:hover::before {
 	content: '';
 	transition: background-color 0.2s ease-in-out;
-	background-color: #9466ff;
+	background-color: #f9932c;
 }
 
 .header__burger:hover {
-	color: #9466ff;
+	color: #f9932c;
 	transition: 0.2s ease-in-out color;
 }
 

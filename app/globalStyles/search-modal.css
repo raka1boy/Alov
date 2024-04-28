@@ -5,7 +5,7 @@
 	min-inline-size: 850px;
 	block-size: 570px;
 	transform: translateX(-50%);
-	background-color: #333a47;
+	background-color: #faf7f7;
 	padding: 24px;
 	z-index: 101;
 }
@@ -80,10 +80,10 @@
 	inline-size: 100%;
 	block-size: 48px;
 	padding-inline-start: 20px;
-	border: none;
+	border: 2px solid #424242;
 	background: rgb(255 255 255 / 0.06);
 	overflow: hidden;
-	color: rgb(255 255 255 / 0.9);
+	color: #424242;
 	padding-top: 18px;
 }
 
@@ -92,7 +92,7 @@
 	left: 20px;
 	top: 12px;
 	pointer-events: none;
-	color: rgb(255 255 255 / 0.4);
+	color: #424242;
 	transition:
 		top 0.2s ease-in-out,
 		font-size 0.2s ease-in-out,
@@ -107,5 +107,5 @@
 		top 0.2s ease-in-out,
 		font-size 0.2s ease-in-out,
 		color 0.2s ease-in-out;
-	color: #9466ff;
+	color: #f9932c;
 }

@@ -5,7 +5,8 @@
 	block-size: 800px;
 	padding-block-start: 104px;
 	padding-block-end: 200px;
-	background: linear-gradient(90deg, rgb(70 121 255 / 1) 0%, rgb(44 195 219 / 1) 43%, rgb(148 102 255 / 1) 76%);
+	background: rgb(255,101,70);
+	background: linear-gradient(90deg, rgba(255,101,70,1) 0%, rgba(249,155,14,1) 43%, rgba(0,0,0,1) 93%);
 
 	@media (max-width: 1460px) {
 		block-size: 680px;
@@ -108,7 +109,7 @@
 				right: 27px;
 				padding: 12px;
 				border-radius: 12px;
-				background-color: #3d4555;
+				background-color: #faf7f7;
 				transition:
 					opacity 0.2s ease-in-out,
 					visibility 0.2s ease-in-out;
@@ -178,7 +179,7 @@
 				&__title {
 					min-inline-size: 142px;
 					margin-block-end: 6px;
-					color: #e8e9ea;
+					color: #424242;
 					font-weight: 700;
 					line-height: 20px;
 
@@ -498,7 +499,7 @@
 		top: -95px;
 		z-index: -1;
 		left: 0;
-		color: #242c39;
+		color: #e6e6e6;
 		font-size: 376px;
 		font-weight: 700;
 
@@ -675,7 +676,7 @@
 }
 
 .img_loading {
-	background-color: #2a323f;
+	background-color: #d2d2d2;
 	pointer-events: none;
 }
 
@@ -684,7 +685,7 @@
 	right: 0;
 	top: -65px;
 	text-decoration: none;
-	color: #fff;
+	color: #424242;
 	font-size: 16px;
 	font-weight: 500;
 	padding-inline-end: 25px;
@@ -704,7 +705,7 @@
 			right: -55px;
 			inline-size: 24px;
 			block-size: 24px;
-			background-color: #e8e9ea;
+			background-color: #424242;
 			-webkit-mask: url(/svg/simple-arrow.svg) no-repeat 50% 50%;
 			mask: url(/svg/simple-arrow.svg) no-repeat 50% 50%;
 			transition: background-color 0.2s ease-in-out;
@@ -713,11 +714,11 @@
 
 	&:hover span::before {
 		transition: background-color 0.2s ease-in-out;
-		background-color: #9466ff;
+		background-color: #f9932c;
 	}
 
 	&:hover {
-		color: #9466ff;
+		color: #f9932c;
 		transition: color 0.2s ease-in-out;
 	}
 }

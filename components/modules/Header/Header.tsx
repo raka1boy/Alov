@@ -5,7 +5,10 @@ import Logo from '@/components/elements/Logo/Logo';
 import { useLang } from '@/hooks/useLang';
 import Menu from './Menu';
 import { openMenu, openSearchModal } from '@/context/modal';
-import { addOverflowHiddenToBody } from '@/lib/utils/common';
+import {
+	addOverflowHiddenToBody,
+	handleOpenAuthPopup,
+} from '@/lib/utils/common';
 import { TModal } from '@/types/types';
 import CartPopup from './CartPopup/CartPopup';
 
@@ -55,20 +58,12 @@ const Header = () => {
 						/>
 					</li>
 					<li className='header__item'>
-						<Link
-							href='/comparison'
-							className='header__button header__button--comparison'
-							aria-label='Открыть сравнение'
-						/>
-					</li>
-					<li className='header__item'>
 						<CartPopup />
 					</li>
 					<li className='header__item header__item--profile'>
-						<Link
-							href='/profile'
-							className='header__button header__button--profile'
-							aria-label='Открыть личный кабинет'
+						<button
+							className='button-reset header__button header__button--profile'
+							onClick={handleOpenAuthPopup}
 						/>
 					</li>
 				</ul>

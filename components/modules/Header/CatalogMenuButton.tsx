@@ -9,7 +9,7 @@ const CatalogMenuButton = ({
 		className='button-reset catalog-menu__item__btn'
 		onClick={handler}
 		style={{
-			color: isActive ? '#e8e9ea' : '#777c85',
+			color: isActive ? '#909090' : '#424242',
 		}}>
 		{name}
 	</button>

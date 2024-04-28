@@ -8,7 +8,7 @@
 	justify-content: space-between;
 	z-index: 100;
 	padding: 20px 24px;
-	background-color: #1d2533;
+	background-color: #ffffff;
 }
 
 .mobile-navbar__button {
@@ -18,7 +18,7 @@
 	min-inline-size: max-content;
 	block-size: 52px;
 	text-decoration: none;
-	color: #e8e9ea;
+	color: #424242;
 	font-size: 14px;
 	background-repeat: no-repeat;
 	background-position: top 5px center;

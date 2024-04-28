@@ -7,13 +7,21 @@ import ProductItemActionButton from '@/components/elements/ProductItemActionButt
 import Link from 'next/link';
 import Image from 'next/image';
 import ProductAvailable from '@/components/elements/ProductAvaliable/ProductAvaliable';
-import { formatPrice } from '@/lib/utils/common';
+import { addOverflowHiddenToBody, formatPrice } from '@/lib/utils/common';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { showQuickViewModal } from '@/context/modal';
+import { setCurrentProduct } from '@/context/goods';
 
 const ProductsListItem = ({ item, title }: IProductsListItemProps) => {
 	const { lang, translations } = useLang();
 	const isTitleForNew = title === translations[lang].main_page.new_title;
 	const isMedia800 = useMediaQuery(800);
+
+	const handleShowQuickViewModal = () => {
+		addOverflowHiddenToBody();
+		showQuickViewModal();
+		setCurrentProduct(item);
+	};
 
 	return (
 		<li className={styles.list__item}>
@@ -38,14 +46,11 @@ const ProductsListItem = ({ item, title }: IProductsListItemProps) => {
 					text={translations[lang].product.add_to_favorites}
 					iconClass='actions__btn_favorite'
 				/>
-				<ProductItemActionButton
-					text={translations[lang].product.add_to_comparison}
-					iconClass='actions__btn_comparison'
-				/>
 				{!isMedia800 && (
 					<ProductItemActionButton
 						text={translations[lang].product.quick_view}
 						iconClass='actions__btn_quick_view'
+						callback={handleShowQuickViewModal}
 					/>
 				)}
 			</div>
@@ -65,7 +70,7 @@ const ProductsListItem = ({ item, title }: IProductsListItemProps) => {
 					inStock={+item.inStock}
 				/>
 				<span className={styles.list__item__price}>
-					{formatPrice(+item.price)} руб.
+					{formatPrice(+item.price)} ₽
 				</span>
 			</div>
 			<button className={`button-reset ${styles.list__item__cart}`}>

@@ -5,7 +5,7 @@
 .footer__top {
 	padding-block-start: 15px;
 	padding-block-end: 30px;
-	background-color: #333a47;
+	background-color: #ffffff;
 }
 
 .footer__top__container {
@@ -38,13 +38,13 @@
 
 .footer__contacts a:hover,
 .footer__links a:hover {
-	color: #9466ff;
+	color: #f9932c;
 	transition: color 0.2s ease-in-out;
 }
 
 .footer__contacts a,
 .footer__links a {
-	color: #e8e9ea;
+	color: #424242;
 	font-size: 16px;
 	text-decoration: none;
 	display: inline-block;
@@ -67,7 +67,7 @@
 .footer__socials__item__link {
 	position: relative;
 	display: block;
-	border: 2px solid #565c66;
+	border: 2px solid rgb(98, 96, 96);
 	border-radius: 50%;
 	inline-size: 48px;
 	block-size: 48px;
@@ -81,12 +81,12 @@
 	left: 0;
 	inline-size: 100%;
 	block-size: 100%;
-	background-color: #e8e9ea;
+	background-color: #424242;
 }
 
 .footer__socials__item:first-child .footer__socials__item__link::before {
-	-webkit-mask: url(/svg/telegram.svg) no-repeat 50% 50%;
-	mask: url(/svg/telegram.svg) no-repeat 50% 50%;
+	-webkit-mask: url(/svg/telegram.svg) no-repeat 48% 55%;
+	mask: url(/svg/telegram.svg) no-repeat 48% 55%;
 }
 
 .footer__socials__item:nth-child(2) .footer__socials__item__link::before {
@@ -96,18 +96,18 @@
 
 .footer__socials__item__link:hover::before {
 	transition: background-color 0.2s ease-in-out;
-	background-color: #9466ff;
+	background-color: #f9932c;
 }
 
 .footer__socials__item__link:hover {
-	border-color: #9466ff;
+	border-color: #f9932c;
 	transition: border-color 0.2s ease-in-out;
 }
 
 .footer__bottom {
 	padding-block-start: 16px;
 	padding-block-end: 40px;
-	background-color: #242c39;
+	background-color: #e4e6ea;
 }
 
 .footer__bottom__container {
@@ -117,7 +117,7 @@
 }
 
 .footer__copyright {
-	color: #a5a8ad;
+	color: #424242;
 	font-size: 12px;
 }
 
@@ -129,14 +129,14 @@
 .footer__policy__inner a,
 .footer__mobile a {
 	text-decoration: none;
-	color: #a5a8ad;
+	color: #424242;
 	font-size: 12px;
 	transition: color 0.2s ease-in-out;
 }
 
 .footer__policy__inner a:hover,
 .footer__mobile a:hover {
-	color: #9466ff;
+	color: #f9932c;
 	transition: color 0.2s ease-in-out;
 }
 

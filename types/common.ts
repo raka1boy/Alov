@@ -13,3 +13,9 @@ export interface IProduct {
 	popularity: string
 	errorMessage?: string
 }
+
+export interface IBaseEffectProps {
+  jwt: string
+  id: string
+  setSpinner: (arg0: boolean) => void
+}
