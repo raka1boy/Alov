@@ -37,7 +37,7 @@ const Footer = () => {
 			<div className='footer__bottom'>
 				<div className='container footer__bottom__container'>
 					<div className='footer__copyright'>
-						© 2024 {translations[lang].footer.copyright}
+						© 2024 ООО {translations[lang].footer.copyright}
 						<br />
 						(18+)
 					</div>

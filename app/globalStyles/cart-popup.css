@@ -32,7 +32,7 @@
 	inline-size: 24px;
 	block-size: 24px;
 	border-radius: 50%;
-	background-color: rgba(255, 255, 255, 0.06) !important;
+	background-color: rgb(255 255 255 / 0.06) !important;
 	transition: background-color 0.2s ease-in-out;
 	background-image: url(/svg/close-small.svg);
 	background-repeat: no-repeat;
@@ -48,7 +48,7 @@
 	margin: 0;
 	padding-block-end: 16px;
 	margin-block-end: 12px;
-	color: rgba(255, 255, 255, 0.9);
+	color: rgb(255 255 255 / 0.9);
 	font-size: 16px;
 	font-weight: 700;
 	border-bottom: #565c66 1px solid;
@@ -84,7 +84,7 @@
 	align-items: self-end;
 	padding-inline-start: 20px;
 	justify-content: center;
-	background-image: url('/svg/empty-cart.svg');
+	background-image: url(/svg/empty-cart.svg);
 	background-repeat: no-repeat;
 	background-position: center center;
 	color: #e8e9ea;
@@ -130,7 +130,7 @@
 	background: radial-gradient(
 			52.53% 52.53% at 50% 47.47%,
 			#4e5d77 0%,
-			rgba(42, 50, 63, 0) 100%
+			rgb(42 50 63 / 0) 100%
 		),
 		#2a323f;
 }
@@ -219,7 +219,7 @@
 
 
 .cart-list__item__counter span {
-	color: rgba(255, 255, 255, 0.9);
+	color: rgb(255 255 255 / 0.9);
 	font-size: 14px;
 }
 

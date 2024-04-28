@@ -146,7 +146,7 @@
 
 .nav-menu__button.lang-active {
 	border-color: #9466ff !important;
-	color: rgba(255, 255, 255, 0.9);
+	color: rgb(255 255 255 / 0.9);
 }
 
 .nav-menu__button:hover {
@@ -154,7 +154,7 @@
 		border-color 0.2s ease-in-out,
 		color 0.2s ease-in-out;
 	border-color: #9466ff !important;
-	color: rgba(255, 255, 255, 0.9);
+	color: rgb(255 255 255 / 0.9);
 }
 
 .nav-menu__list {
@@ -264,18 +264,21 @@
 }
 
 @media (max-width: 1190px) {
+
 	.nav-menu__list {
 		inline-size: 75%;
 	}
 }
 
 @media (max-width: 970px) {
+
 	.nav-menu__list {
 		inline-size: 90%;
 	}
 }
 
 @media (max-width: 800px) {
+
 	.accordion__item:first-child .accordion__title::before {
 		left: -200px;
 		background-image: url(/svg/separator-small.svg);
@@ -287,12 +290,14 @@
 }
 
 @media (max-width: 640px) {
+
 	.accordion__item:first-child .accordion__title::before {
 		background-image: none;
 	}
 }
 
 @media (max-width: 450px) {
+
 	.nav-menu__logo {
 		margin-block-end: 95px;
 	}
@@ -320,6 +325,7 @@
 }
 
 @keyframes menu-animation {
+
 	0% {
 		opacity: 0;
 		transform: scale(0.04) translateY(300%);
@@ -336,7 +342,7 @@
 
 	60% {
 		opacity: 1;
-		transform: scale(0.02) translateY(0px);
+		transform: scale(0.02) translateY(0);
 	}
 
 	61% {

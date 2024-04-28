@@ -11,6 +11,7 @@
 }
 
 @media (max-width: 940px) {
+
 	.search-modal {
 		min-inline-size: auto;
 		inline-size: 700px;
@@ -18,12 +19,14 @@
 }
 
 @media (max-width: 780px) {
+
 	.search-modal {
 		inline-size: 530px;
 	}
 }
 
 @media (max-width: 590px) {
+
 	.search-modal {
 		inline-size: 370px;
 		padding: 12px;
@@ -31,6 +34,7 @@
 }
 
 @media (max-width: 420px) {
+
 	.search-modal {
 		inline-size: 300px;
 	}
@@ -48,6 +52,7 @@
 }
 
 @media (max-width: 590px) {
+
 	.search-modal__close {
 		top: 12px;
 		right: 12px;
@@ -76,9 +81,9 @@
 	block-size: 48px;
 	padding-inline-start: 20px;
 	border: none;
-	background: rgba(255, 255, 255, 0.06);
+	background: rgb(255 255 255 / 0.06);
 	overflow: hidden;
-	color: rgba(255, 255, 255, 0.9);
+	color: rgb(255 255 255 / 0.9);
 	padding-top: 18px;
 }
 
@@ -87,7 +92,7 @@
 	left: 20px;
 	top: 12px;
 	pointer-events: none;
-	color: rgba(255, 255, 255, 0.4);
+	color: rgb(255 255 255 / 0.4);
 	transition:
 		top 0.2s ease-in-out,
 		font-size 0.2s ease-in-out,
