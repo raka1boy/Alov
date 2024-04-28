@@ -6,8 +6,9 @@ defmodule User do
 
   require Db
   defstruct name: nil, password: nil, email: nil
-
-  #@spec create(User) :: nil
+  @spec delete(any()) ::
+          {:error, %{:__exception__ => true, :__struct__ => atom(), optional(atom()) => any()}}
+          | {:ok, MyXQL.Result.t()}
   def delete(user) do
     Db.exec(
       "#{user}"
