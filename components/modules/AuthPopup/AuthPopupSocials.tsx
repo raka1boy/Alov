@@ -15,22 +15,22 @@ const AuthPopupSocials = ({
 		<button
 			className='button-reset socials__btn gh-color'
 			onClick={handleSignupWithOAuth}>
-			<FontAwesomeIcon icon={faGithub} beat />
+			<FontAwesomeIcon icon={faGithub} />
 		</button>
 		<button
 			className='button-reset socials__btn g-color'
 			onClick={handleSignupWithOAuth}>
-			<FontAwesomeIcon icon={faGoogle} shake />
+			<FontAwesomeIcon icon={faGoogle} />
 		</button>
 		<button
 			className='button-reset socials__btn y-color'
 			onClick={handleSignupWithOAuth}>
-			<FontAwesomeIcon icon={faYandex} bounce />
+			<FontAwesomeIcon icon={faYandex} />
 		</button>
 		<button
 			className='button-reset socials__btn vk-color'
 			onClick={handleSignupWithOAuth}>
-			<FontAwesomeIcon icon={faVk} shake />
+			<FontAwesomeIcon icon={faVk} />
 		</button>
 	</div>
 );
