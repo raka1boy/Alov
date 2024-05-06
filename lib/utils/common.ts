@@ -1,4 +1,8 @@
-import { closeAuthPopup, openAuthPopup } from '@/context/auth'
+import { closeAuthPopup, openAuthPopup, setIsAuth } from '@/context/auth';
+import { loginCheck } from '@/context/user';
+import { ICartItem } from '@/types/cart';
+import { EventCallable } from 'effector'
+import toast from 'react-hot-toast'
 
 export const removeOverflowHiddenFromBody = () => {
 	const body = document.querySelector('body') as HTMLBodyElement;
@@ -45,21 +49,72 @@ export const idGenerator = () => {
 };
 
 export const handleOpenAuthPopup = () => {
-  addOverflowHiddenToBody()
-  openAuthPopup()
-}
+	addOverflowHiddenToBody();
+	openAuthPopup();
+};
 
 export const handleCloseAuthPopup = () => {
-  removeOverflowHiddenFromBody()
-  closeAuthPopup()
-}
+	removeOverflowHiddenFromBody();
+	closeAuthPopup();
+};
 
 export const closeAuthPopupWhenSomeModalOpened = (
-  showQuickViewModal: boolean,
+	showQuickViewModal: boolean
 ) => {
-  if (showQuickViewModal) {
-    closeAuthPopup()
-    return
-  }
-  handleCloseAuthPopup()
-}
+	if (showQuickViewModal) {
+		closeAuthPopup();
+		return;
+	}
+	handleCloseAuthPopup();
+};
+
+export const isUserAuth = () => {
+	const auth = JSON.parse(localStorage.getItem('auth') as string);
+
+	if (!auth?.accessToken) {
+		setIsAuth(false);
+		return false;
+	}
+
+	return true;
+};
+
+export const triggerLoginCheck = () => {
+	if (!isUserAuth()) {
+		return;
+	}
+
+	const auth = JSON.parse(localStorage.getItem('auth') as string);
+
+	loginCheck({ jwt: auth.accessToken });
+};
+
+export const isItemInList = (array: ICartItem[], productId: string) =>
+	array.some((item) => item.productId === productId);
+
+export const deleteProductFromLS = <T>(
+	id: string,
+	key: string,
+	event: EventCallable<T>,
+	setShouldShowEmpty: (arg0: boolean) => void,
+	message: string,
+	withToast = true
+) => {
+	let items = JSON.parse(localStorage.getItem(key) as string);
+
+	if (!items) {
+		items = [];
+	}
+
+	const updatedItems = items.filter(
+		(item: { clientId: string }) => item.clientId !== id
+	);
+
+	localStorage.setItem(key, JSON.stringify(updatedItems));
+	event(updatedItems);
+	withToast && toast.success(message);
+
+	if (!updatedItems.length) {
+		setShouldShowEmpty(true);
+	}
+};

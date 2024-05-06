@@ -7,20 +7,38 @@ import ProductItemActionButton from '@/components/elements/ProductItemActionButt
 import Link from 'next/link';
 import Image from 'next/image';
 import ProductAvailable from '@/components/elements/ProductAvaliable/ProductAvaliable';
-import { addOverflowHiddenToBody, formatPrice } from '@/lib/utils/common';
+import {
+	addOverflowHiddenToBody,
+	formatPrice,
+	isItemInList,
+} from '@/lib/utils/common';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
-import { showQuickViewModal } from '@/context/modal';
+import { showQuickViewModal } from '@/context/modals';
+import { setIsAddToFavorites } from '@/context/favorites';
 import { setCurrentProduct } from '@/context/goods';
+import { addItemToCart } from '@/lib/utils/cart';
+import { useCartAction } from '@/hooks/useCartAction';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const ProductsListItem = ({ item, title }: IProductsListItemProps) => {
 	const { lang, translations } = useLang();
 	const isTitleForNew = title === translations[lang].main_page.new_title;
+	const { addToCartSpinner, setAddToCartSpinner, currentCartByAuth } =
+		useCartAction();
+	const isProductInCart = isItemInList(currentCartByAuth, item._id);
+
 	const isMedia800 = useMediaQuery(800);
 
 	const handleShowQuickViewModal = () => {
 		addOverflowHiddenToBody();
 		showQuickViewModal();
 		setCurrentProduct(item);
+	};
+
+	const addToCart = () => {
+		setIsAddToFavorites(false);
+		addItemToCart(item, setAddToCartSpinner, 1);
 	};
 
 	return (
@@ -73,8 +91,20 @@ const ProductsListItem = ({ item, title }: IProductsListItemProps) => {
 					{formatPrice(+item.price)} ₽
 				</span>
 			</div>
-			<button className={`button-reset ${styles.list__item__cart}`}>
-				{translations[lang].product.to_cart}
+			<button
+				onClick={addToCart}
+				className={`button-reset ${styles.list__item__cart} ${
+					isProductInCart ? styles.list__item__cart_added : ''
+				}`}
+				disabled={addToCartSpinner}
+				style={addToCartSpinner ? { minInlineSize: 125, blockSize: 48 } : {}}>
+				{addToCartSpinner ? (
+					<FontAwesomeIcon icon={faSpinner} spin color='#000' />
+				) : isProductInCart ? (
+					translations[lang].product.in_cart
+				) : (
+					translations[lang].product.to_cart
+				)}
 			</button>
 		</li>
 	);

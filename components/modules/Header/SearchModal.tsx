@@ -1,4 +1,4 @@
-import { closeSearchModal } from '@/context/modal';
+import { closeSearchModal } from '@/context/modals';
 import { useLang } from '@/hooks/useLang';
 import { handleCloseModal } from '@/lib/utils/common';
 

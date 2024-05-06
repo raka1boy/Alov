@@ -7,20 +7,22 @@ import { useMediaQuery } from '@/hooks/useMediaQuery';
 import Header from '../modules/Header/Header';
 import MobileNavbar from '../modules/MobileNavbar/MobileNavbar';
 import SearchModal from '../modules/Header/SearchModal';
-import {
-	$searchModalIsOpen,
-	$showQuickViewModal,
-	closeSearchModal,
-} from '@/context/modal';
 import { handleCloseAuthPopup, handleCloseModal } from '@/lib/utils/common';
 import Footer from '../modules/Footer/Footer';
 import QuickViewModal from '../modules/QuickViewModal/QuickViewModal';
-import { $openAuthPopup, openAuthPopup } from '@/context/auth';
 import AuthPopup from '../modules/AuthPopup/AuthPopup';
+import { closeSearchModal } from '@/context/modals';
+import { $openAuthPopup } from '@/context/auth/state'
+import {
+  $searchModal,
+  $shareModal,
+  $showQuickViewModal,
+} from '@/context/modals/state'
+import { basePropsForMotion } from '@/constants/motion'
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 	const isMedia800 = useMediaQuery(800);
-	const searchModal = useUnit($searchModalIsOpen);
+	const searchModal = useUnit($searchModal);
 	const showQuickViewModal = useUnit($showQuickViewModal);
 	const openAuthPopup = useUnit($openAuthPopup);
 	const authWrapperRef = useRef() as MutableRefObject<HTMLDivElement>;

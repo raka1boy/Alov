@@ -1,64 +1,102 @@
-import Link from 'next/link';
-import { forwardRef } from 'react';
-import { withClickOutside } from '@/components/hocs/withClickOutside';
-import { IWrappedComponentProps } from '@/types/hocs';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useLang } from '@/hooks/useLang';
+import { useUnit } from 'effector-react'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Link from 'next/link'
+import { AnimatePresence, motion } from 'framer-motion'
+import { forwardRef } from 'react'
+import { withClickOutside } from '@/components/hocs/withClickOutside'
+import { useLang } from '@/hooks/useLang'
+import { IWrappedComponentProps } from '@/types/hocs'
+import CartPopupItem from './CartPopupItem'
+import { useTotalPrice } from '@/hooks/useTotalPrice'
+import { formatPrice } from '@/lib/utils/common'
+import { useGoodsByAuth } from '@/hooks/useGoodsByAuth'
+import { getCartItemsFx } from '@/context/cart/index'
+import { $cart, $cartFromLs } from '@/context/cart/state'
 
 const CartPopup = forwardRef<HTMLDivElement, IWrappedComponentProps>(
-	({ open, setOpen }, ref) => {
-		const { lang, translations } = useLang();
-		const toggleShowPopup = (value: boolean) => {
-			setOpen(value);
-		};
-		return (
-			<div className='cart-popup' ref={ref}>
-				<ul className='list-reset cart-popup__cart-list'>
-					<li className='header__item'>
-						<Link
-							href='/cart'
-							className='header__button header__button--cart'
-							aria-label='Открыть корзину'
-							onMouseEnter={() => toggleShowPopup(true)}
-						/>
-						<AnimatePresence>
-							{open && (
-								<motion.div
-									initial={{ opacity: 0, scale: 0 }}
-									animate={{ opacity: 1, scale: 1 }}
-									exit={{ opacity: 0, scale: 0 }}
-									className='cart-popup__wrapper'
-									onMouseLeave={() => toggleShowPopup(false)}>
-									<span className='cart-popup__arrow' />
-									<button
-										className='button-reset cart-popup__close'
-										onClick={() => toggleShowPopup(false)}
-									/>
-									<h3 className='cart-popup__title'>
-										{translations[lang].breadcrumbs.cart}
-									</h3>
-									<ul className='list-reset cart-popup__cart-list'>
-										<li className='cart-popup__cart-list__empty-cart' />
-									</ul>
-									<div className='cart-popup__footer'>
-										<div className='cart-popup__footer__inner'>
-											<span>{translations[lang].common.order_price}:</span>
-											<span>0 Bebra Coin</span>
-										</div>
-										<Link href='/order' className='cart-popup__footer__link'>
-											{translations[lang].order.make_order}
-										</Link>
-									</div>
-								</motion.div>
-							)}
-						</AnimatePresence>
-					</li>
-				</ul>
-			</div>
-		);
-	}
-);
+  ({ open, setOpen }, ref) => {
+    const { lang, translations } = useLang()
+    const handleShowPopup = () => setOpen(true)
+    const spinner = useUnit(getCartItemsFx.pending)
+    const currentCartByAuth = useGoodsByAuth($cart, $cartFromLs)
+    const { animatedPrice } = useTotalPrice()
 
-CartPopup.displayName = 'CartPopup';
+    const handleHidePopup = () => setOpen(false)
 
-export default withClickOutside(CartPopup);
+    return (
+      <div className='cart-popup' ref={ref}>
+        <Link
+          className='header__button header__button--cart'
+          href='/cart'
+          onMouseEnter={handleShowPopup}
+        >
+          {!!currentCartByAuth.length && <span className='not-empty' />}
+        </Link>
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              className='cart-popup__wrapper'
+              onMouseLeave={handleHidePopup}
+            >
+              <span className='cart-popup__arrow' />
+              <button
+                className='button-reset cart-popup__close'
+                onClick={handleHidePopup}
+              />
+              <h3 className='cart-popup__title'>
+                {translations[lang].breadcrumbs.cart}
+              </h3>
+              {spinner ? (
+                <div className='cart-popup__spinner'>
+                  <FontAwesomeIcon
+                    icon={faSpinner}
+                    spin
+                    color='#fff'
+                    size='3x'
+                  />
+                </div>
+              ) : (
+                <ul className='list-reset cart-popup__cart-list'>
+                  <AnimatePresence>
+                    {currentCartByAuth.length ? (
+                      currentCartByAuth.map((item) => (
+                        <motion.li
+                          key={item._id || item.clientId}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className='cart-list__item'
+                        >
+                          <CartPopupItem item={item} />
+                        </motion.li>
+                      ))
+                    ) : (
+                      <li className='cart-popup__cart-list__empty-cart' />
+                    )}
+                  </AnimatePresence>
+                </ul>
+              )}
+              <div className='cart-popup__footer'>
+                <div className='cart-popup__footer__inner'>
+                  <span>{translations[lang].common.order_price}:</span>
+                  <span>{formatPrice(animatedPrice)} ₽</span>
+                </div>
+                <Link href='/order' className='cart-popup__footer__link'>
+                  {translations[lang].breadcrumbs.order}
+                </Link>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    )
+  }
+)
+
+CartPopup.displayName = 'CartPopup'
+
+export default withClickOutside(CartPopup)

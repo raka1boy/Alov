@@ -8,7 +8,6 @@
 	left: -300px;
 	inline-size: 328px;
 	padding: 12px;
-	padding-inline-end: 5px;
 	border-radius: 12px;
 	background-color: #faf7f7;
 	transform-origin: top right;
@@ -126,13 +125,14 @@
 
 .cart-list__item__img {
 	inline-size: 96px;
+	block-size: 96px;
 	margin-inline-end: 13px;
 	background: radial-gradient(
 			52.53% 52.53% at 50% 47.47%,
-			#4e5d77 0%,
+			#858585 0%,
 			rgb(42 50 63 / 0) 100%
 		),
-		#2a323f;
+		#fcfcfc;
 }
 
 .cart-list__item__img img {
@@ -181,7 +181,7 @@
 	justify-content: space-between;
 	inline-size: 106px;
 	border-radius: 16px;
-	background: #333a47;
+	background: #000000b1;
 	padding: 4px 6px;
 }
 

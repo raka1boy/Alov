@@ -3,13 +3,14 @@ import { useUnit } from 'effector-react';
 import { Toaster } from 'react-hot-toast';
 import { EarthoOneProvider } from '@eartho/one-client-react';
 import { Next13ProgressBar } from 'next13-progressbar';
-import { $showQuickViewModal, closeQuickViewModal } from '@/context/modal';
+import { $showQuickViewModal } from '@/context/modals/state';
+import { closeQuickViewModal } from '@/context/modals';
 import Layout from './Layout';
 import {
 	handleCloseAuthPopup,
 	removeOverflowHiddenFromBody,
 } from '@/lib/utils/common';
-import { $openAuthPopup } from '@/context/auth';
+import { $openAuthPopup } from '@/context/auth/state';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -37,6 +38,7 @@ const PagesLayout = ({ children }: { children: React.ReactNode }) => {
 		<>
 			{isClient ? (
 				<EarthoOneProvider
+					domain={`${process.env.NEXT_PUBLIC_OAUTH_DOMAIN}`}
 					clientId={`${process.env.NEXT_PUBLIC_OAUTH_CLIENT_ID}`}>
 					<html lang='ru'>
 						<body>

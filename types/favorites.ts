@@ -7,12 +7,10 @@ export interface IFavoriteItem {
   productId: string
   image: string
   name: string
-  size: string
   price: string
   vendorCode: string
   category: string
   inStock: string
-  color: string
 }
 
 export interface IAddProductsFromLSToFavoriteFx {

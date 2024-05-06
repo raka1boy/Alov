@@ -3,7 +3,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useUnit } from 'effector-react';
 import { useState } from 'react';
-import { $catalogMenuIsOpen, closeCatalogMenu } from '@/context/modal';
+import { closeCatalogMenu } from '@/context/modals';
+import { $catalogMenuIsOpen } from '@/context/modals/state';
 import { useLang } from '@/hooks/useLang';
 import { useMenuAnimation } from '@/hooks/useMenuAnimation';
 import Header from './Header';

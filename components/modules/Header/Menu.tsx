@@ -1,5 +1,6 @@
-import { $menuIsOpen, closeMenu } from '@/context/modal';
+import { closeMenu } from '@/context/modals'
 import { useLang } from '@/hooks/useLang';
+import { $menuIsOpen } from '@/context/modals/state'
 
 import { useUnit } from 'effector-react';
 import { useState } from 'react';

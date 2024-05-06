@@ -1,11 +1,11 @@
 'use client';
 import Link from 'next/link';
 import {
-	closeCatalogMenu,
-	closeMenu,
-	openCatalogMenu,
-	openMenu,
-} from '@/context/modal';
+  closeCatalogMenu,
+  closeMenu,
+  openCatalogMenu,
+  openMenu,
+} from '@/context/modals'
 import { useLang } from '@/hooks/useLang';
 import { addOverflowHiddenToBody } from '@/lib/utils/common';
 import { TAction } from '@/types/types';

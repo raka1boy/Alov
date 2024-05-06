@@ -18,7 +18,6 @@ export interface ICartItem {
 export interface IAddProductToCartFx {
   productId: string
   category: string
-  size: string
   count: number
   jwt: string
   clientId: string
@@ -34,7 +33,7 @@ export interface IUpdateCartItemCountFx extends IBaseEffectProps {
   count: number
 }
 
-export interface IDeleteCartItemBtnProps {
+export interface IDeleteCartItemButtonProps {
   btnDisabled: boolean
   callback: VoidFunction
   className?: string
