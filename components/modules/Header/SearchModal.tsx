@@ -1,6 +1,6 @@
 import { closeSearchModal } from '@/context/modals';
 import { useLang } from '@/hooks/useLang';
-import { handleCloseModal } from '@/lib/utils/common';
+import { handleCloseSearchModal } from '@/lib/utils/common';
 
 const SearchModal = () => {
 	const { lang, translations } = useLang();
@@ -24,7 +24,7 @@ const SearchModal = () => {
 		<div className='search-modal'>
 			<button
 				className='button-reset search-modal__close'
-				onClick={() => handleCloseModal(closeSearchModal)}
+				onClick={handleCloseSearchModal}
 			/>
 			<h3 className='search-modal__title'>
 				{translations[lang].header.search_products}

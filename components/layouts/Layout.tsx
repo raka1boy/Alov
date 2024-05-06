@@ -7,11 +7,10 @@ import { useMediaQuery } from '@/hooks/useMediaQuery';
 import Header from '../modules/Header/Header';
 import MobileNavbar from '../modules/MobileNavbar/MobileNavbar';
 import SearchModal from '../modules/Header/SearchModal';
-import { handleCloseAuthPopup, handleCloseModal } from '@/lib/utils/common';
+import { handleCloseAuthPopup, handleCloseSearchModal } from '@/lib/utils/common';
 import Footer from '../modules/Footer/Footer';
 import QuickViewModal from '../modules/QuickViewModal/QuickViewModal';
 import AuthPopup from '../modules/AuthPopup/AuthPopup';
-import { closeSearchModal } from '@/context/modals';
 import { $openAuthPopup } from '@/context/auth/state'
 import {
   $searchModal,
@@ -80,7 +79,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 					['header__search-overlay']: true,
 					['overlay-active']: searchModal,
 				})}
-				onClick={() => handleCloseModal(closeSearchModal)}
+				onClick={handleCloseSearchModal}
 			/>
 			<Footer />
 		</>

@@ -13,6 +13,7 @@ import {
 import { $openAuthPopup } from '@/context/auth/state';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import CookieAlert from '../modules/CookieAlert/CookieAlert';
 
 const PagesLayout = ({ children }: { children: React.ReactNode }) => {
 	const [isClient, setIsClient] = useState(false);
@@ -61,7 +62,9 @@ const PagesLayout = ({ children }: { children: React.ReactNode }) => {
 									initial={{ opacity: 0, scale: 0.5 }}
 									animate={{ opacity: 1, scale: 1 }}
 									exit={{ opacity: 0, scale: 0.5 }}
-									className='cookie-popup'></motion.div>
+									className='cookie-popup'>
+									<CookieAlert setCookieAlertOpen={setCookieAlertOpen} />
+								</motion.div>
 							)}
 							<Toaster position='top-center' reverseOrder={false} />
 						</body>

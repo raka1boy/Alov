@@ -10,9 +10,12 @@ import { useLang } from '@/hooks/useLang';
 import { addOverflowHiddenToBody } from '@/lib/utils/common';
 import { TAction } from '@/types/types';
 import CatalogMenu from '../Header/CatalogMenu';
+import { $cart, $cartFromLs } from '@/context/cart/state'
+import { useGoodsByAuth } from '@/hooks/useGoodsByAuth'
 
 const MobileNavbar = () => {
 	const { lang, translations } = useLang();
+	const currentCartByAuth = useGoodsByAuth($cart, $cartFromLs);
 
 	const handleMenuAction = (action: TAction) => () => {
 		addOverflowHiddenToBody(action === 'openCatalogMenu' ? '0' : '');
@@ -51,6 +54,7 @@ const MobileNavbar = () => {
 					href='/cart'
 					className='mobile-navbar__button'
 					aria-label='Открыть корзину'>
+					{!!currentCartByAuth.length && <span className='not-empty not-empty-mobile' />}
 					{translations[lang].breadcrumbs.cart}
 				</Link>
 				<button
