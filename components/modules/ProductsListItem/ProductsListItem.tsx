@@ -6,7 +6,7 @@ import ProductLabel from './ProductLabel';
 import ProductItemActionButton from '@/components/elements/ProductItemActionButton/ProductItemActionButton';
 import Link from 'next/link';
 import Image from 'next/image';
-import ProductAvailable from '@/components/elements/ProductAvaliable/ProductAvaliable';
+import ProductAvailable from '@/components/elements/ProductAvailable/ProductAvailable';
 import {
 	addOverflowHiddenToBody,
 	formatPrice,
@@ -20,6 +20,7 @@ import { addItemToCart } from '@/lib/utils/cart';
 import { useCartAction } from '@/hooks/useCartAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { useFavoritesAction } from '@/hooks/useFavoritesAction';
 
 const ProductsListItem = ({ item, title }: IProductsListItemProps) => {
 	const { lang, translations } = useLang();
@@ -27,7 +28,11 @@ const ProductsListItem = ({ item, title }: IProductsListItemProps) => {
 	const { addToCartSpinner, setAddToCartSpinner, currentCartByAuth } =
 		useCartAction();
 	const isProductInCart = isItemInList(currentCartByAuth, item._id);
-
+	const {
+		handleAddProductToFavorites,
+		addToFavoritesSpinner,
+		isProductInFavorites,
+	} = useFavoritesAction(item);
 	const isMedia800 = useMediaQuery(800);
 
 	const handleShowQuickViewModal = () => {
@@ -61,9 +66,18 @@ const ProductsListItem = ({ item, title }: IProductsListItemProps) => {
 			)}
 			<div className={styles.list__item__actions}>
 				<ProductItemActionButton
+					spinner={addToFavoritesSpinner}
 					text={translations[lang].product.add_to_favorites}
-					iconClass='actions__btn_favorite'
+					iconClass={`${
+						addToFavoritesSpinner
+							? 'actions__btn_spinner'
+							: isProductInFavorites
+								? 'actions__btn_favorite_checked'
+								: 'actions__btn_favorite'
+					}`}
+					callback={handleAddProductToFavorites}
 				/>
+
 				{!isMedia800 && (
 					<ProductItemActionButton
 						text={translations[lang].product.quick_view}

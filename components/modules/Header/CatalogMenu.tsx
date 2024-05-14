@@ -41,14 +41,15 @@ const CatalogMenu = () => {
 			name: translations[lang].main_menu.lighters,
 			id: 1,
 			items: [
-				translations[lang].comparison.flintLighters,
-				translations[lang].comparison.jetFlames,
-				translations[lang].comparison.metalFlintLights,
-				translations[lang].comparison.metalJets,
-				translations[lang].comparison.metalTurboChargedLighters,
-				translations[lang].comparison.piezoFlashlights,
-				translations[lang].comparison.turboChargedFlashlights,
-				translations[lang].comparison.turboChargedLighters,
+				translations[lang].lighters.flintLighters,
+				translations[lang].lighters.jetFlames,
+				translations[lang].lighters.metalFlintLights,
+				translations[lang].lighters.metalJets,
+				translations[lang].lighters.metalTurboChargedLighters,
+				translations[lang].lighters.piezoLighters,
+				translations[lang].lighters.piezoFlashlights,
+				translations[lang].lighters.turboChargedFlashlights,
+				translations[lang].lighters.turboChargedLighters,
 			],
 			handler: () => setActiveListId(1),
 		},
@@ -105,41 +106,23 @@ const CatalogMenu = () => {
 											key={id}
 											variants={itemVariants}
 											className='catalog-menu__list__item'>
-											{!isMedia450 && (
-												<>
-													{id === 1 && (
-														<CatalogMenuButton
-															{...buttonProps(isActiveList(1))}
-														/>
-													)}
-												</>
-											)}
-											{!isMedia450 && (
-												<AnimatePresence>
-													{isCurrentList(isActiveList(1), 1) && (
-														<CatalogMenuList items={items} />
-													)}
-												</AnimatePresence>
-											)}
-											{isMedia450 && (
-												<Accordion
-													title={name}
-													titleClass='button-reset accordion__title'>
-													<ul className='list-reset catalog__accordion__list'>
-														{items.map((title, i) => (
-															<li
-																key={i}
-																className='catalog__accordion__list__item'>
-																<Link
-																	href='/catalog'
-																	className='accordion__link'>
-																	{title}
-																</Link>
-															</li>
-														))}
-													</ul>
-												</Accordion>
-											)}
+											<Accordion
+												title={name}
+												titleClass='button-reset accordion__title'>
+												<ul className='list-reset catalog__accordion__list'>
+													{items.map((title, i) => (
+														<li
+															key={i}
+															className='catalog__accordion__list__item'>
+															<Link
+																href={`/catalog/`}
+																className='accordion__link'>
+																{title}
+															</Link>
+														</li>
+													))}
+												</ul>
+											</Accordion>
 										</motion.li>
 									);
 								})}

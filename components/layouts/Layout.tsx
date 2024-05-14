@@ -14,10 +14,8 @@ import AuthPopup from '../modules/AuthPopup/AuthPopup';
 import { $openAuthPopup } from '@/context/auth/state'
 import {
   $searchModal,
-  $shareModal,
   $showQuickViewModal,
 } from '@/context/modals/state'
-import { basePropsForMotion } from '@/constants/motion'
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 	const isMedia800 = useMediaQuery(800);

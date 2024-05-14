@@ -1,4 +1,4 @@
-export type TListName = 'catalog' | 'buyers' | 'contacts' | false;
+export type TListName = 1 | 2 | 3 | 0
 
 export type TAction = 'openMenu' | 'openCatalogMenu';
 

@@ -1,10 +1,10 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import PagesLayout from '@/components/layouts/PagesLayout';
 import './globalStyles/normalize.css';
 import './globalStyles/globals.css';
 import './globalStyles/header.css';
 import './globalStyles/header-profile.css';
-import './globalStyles/breadcrumbs.css'
+import './globalStyles/breadcrumbs.css';
 import './globalStyles/menu.css';
 import './globalStyles/mobile-navbar.css';
 import './globalStyles/catalog-menu.css';
@@ -19,6 +19,10 @@ import './globalStyles/footer.css';
 export const metadata: Metadata = {
 	title: 'Alov — Магазин зажигалок',
 	description: 'Самый крупный поставщик в России',
+};
+
+export const viewport: Viewport = {
+	themeColor: 'white',
 };
 
 export default function RootLayout({

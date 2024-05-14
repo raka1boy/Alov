@@ -12,12 +12,14 @@ export interface ICartItem {
   price: string
   totalPrice: string
   inStock: string
+  color: string
   category: string
 }
 
 export interface IAddProductToCartFx {
   productId: string
   category: string
+  size: string
   count: number
   jwt: string
   clientId: string
