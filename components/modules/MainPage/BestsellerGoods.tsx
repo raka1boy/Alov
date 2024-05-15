@@ -21,7 +21,7 @@ const BestsellerGoods = () => {
         inStock: '10',
         isBestseller: true,
         isNew: false,
-        sizes: {s: true, l: true, m: true, xl: true, xxl: true},
+        sizes: {inBlocks: true, inBoxes: true},
         popularity: 100
     },
     {
@@ -38,7 +38,7 @@ const BestsellerGoods = () => {
         inStock: '5',
         isBestseller: true,
         isNew: true,
-        sizes: {s: true, l: true, m: true, xl: true, xxl: true},
+        sizes: {inBlocks: true, inBoxes: true},
         popularity: 150
     }
 ];

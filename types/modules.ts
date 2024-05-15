@@ -25,6 +25,7 @@ export interface ICatalogMenuButtonProps {
 export interface IProductsListItemProps {
 	item: IProduct;
 	title?: string;
+	selectedSize?: string;
 }
 
 export interface IProductLabelProps {

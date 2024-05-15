@@ -120,7 +120,7 @@ const ProductPageContent = () => {
 								/>
 							</div>
 							<button
-								className={`btn-reset ${styles.product__top__price__share}`}
+								className={`button-reset ${styles.product__top__price__share}`}
 								onClick={handleProductShare}
 							/>
 						</div>
@@ -175,10 +175,16 @@ const ProductPageContent = () => {
 									className={`counter ${styles.product__top__counter}`}
 									count={count}
 									totalCount={+product.inStock}
-									initialCount={+(existingItem?.count || 1)}
+									initialCount={
+										+(
+											existingItem?.count ||
+											(selectedSize === 'inBlocks' ? 50 : 12)
+										)
+									}
 									setCount={setCount}
 									cartItem={existingItem as ICartItem}
 									updateCountAsync={false}
+									selectedSize={selectedSize}
 								/>
 							) : (
 								<div

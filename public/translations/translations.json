@@ -144,7 +144,7 @@
       "collection": "Collection"
     },
     "size_table": {
-      "head_circumference": "Head circumference, cm",
+      "head_circumference": "Example size",
       "size": "Size",
       "russian_size": "Russian size",
       "manufacturer_size": "Manufacturer size",
@@ -369,7 +369,7 @@
       "collection": "Коллекция"
     },
     "size_table": {
-      "head_circumference": "Обхват головы, см",
+      "head_circumference": "Пример количества",
       "size": "Размер",
       "russian_size": "Российский размер",
       "manufacturer_size": "Размер производителя",

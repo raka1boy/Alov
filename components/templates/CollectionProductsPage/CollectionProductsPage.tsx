@@ -76,7 +76,7 @@ const CollectionProductsPage = () => {
 					{!spinner && (
 						<ul className={`list-reset ${styles.watched_products__list}`}>
 							{(products.items || []).map((item) => (
-								<ProductsListItem key={item._id} item={item} />
+								<ProductsListItem key={item._id} item={item}/>
 							))}
 						</ul>
 					)}

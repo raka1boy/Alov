@@ -47,6 +47,10 @@ const CartListItem = ({ item }: { item: ICartItem }) => {
 					className={`${styles.cart__list__item__name} ${styles.cart__list__item__block}`}>
 					{item.name}
 				</div>
+				<div
+					className={`${styles.cart__list__item__size} ${styles.cart__list__item__block}`}>
+					Размер: {item.size === 'inBlocks' ? 'По блокам' : 'По коробкам'}
+				</div>
 			</div>
 			<div className={styles.cart__list__item__inner}>
 				<div
@@ -67,6 +71,7 @@ const CartListItem = ({ item }: { item: ICartItem }) => {
 					decreasePrice={decreasePriceWithAnimation}
 					cartItem={item}
 					updateCountAsync
+					selectedSize={item.size}
 				/>
 				<div
 					className={`${styles.cart__list__item__price} ${styles.cart__list__item__inner__block}`}>

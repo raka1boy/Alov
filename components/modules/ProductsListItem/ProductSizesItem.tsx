@@ -7,7 +7,6 @@ const ProductSizesItem = ({
 	currentSize,
 	selectedSize,
 	setSelectedSize,
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	currentCartItems,
 }: IProductSizesItemProps) => {
 	const handleSelectSize = () => setSelectedSize(currentSize[0]);
@@ -31,7 +30,7 @@ const ProductSizesItem = ({
 				withCartIcon={false}
 			/>
 			<button className='button-reset' onClick={handleSelectSize}>
-				{currentSize[0].toLocaleUpperCase()}
+				{currentSize[0] === 'inBlocks' ? 'По блокам' : 'По коробкам'}
 			</button>
 		</li>
 	);

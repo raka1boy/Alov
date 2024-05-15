@@ -22,11 +22,8 @@ export const $catalogCategoryOptions = catalog
 
 export const $sizesOptions = catalog
 	.createStore<ISizeOption[]>([
-		{ id: 1, size: 'S', checked: false },
-		{ id: 2, size: 'L', checked: false },
-		{ id: 3, size: 'M', checked: false },
-		{ id: 4, size: 'XL', checked: false },
-		{ id: 5, size: 'XXL', checked: false },
+		{ id: 1, size: 'inBlocks', checked: false },
+		{ id: 2, size: 'inBoxes', checked: false },
 	])
 	.on(setSizesOptions, (_, options) => options)
 	.on(updateSizesOptionBySize, (state, size) =>

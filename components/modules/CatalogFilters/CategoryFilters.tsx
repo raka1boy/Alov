@@ -119,7 +119,7 @@ const CatalogFilters = ({
 								<SelectInfoItem
 									key={item.id}
 									id={item.id}
-									text={item.size}
+									text={item.size === 'inBlocks' ? 'По блокам' : 'По коробкам'}
 									handleRemoveItem={handleRemoveSizeOption}
 								/>
 							))}

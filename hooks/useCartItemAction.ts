@@ -23,15 +23,15 @@ export const useCartItemAction = (cartItem: ICartItem) => {
 	} = usePriceAnimation(+cartItem.price, +cartItem.price * +cartItem.count);
 
 	const increasePriceWithAnimation = () => {
-		setFrom(price);
-		setTo(price + +cartItem.price);
 		increasePrice();
+		setFrom(price);
+		setTo(price + +cartItem.price * (cartItem.size === 'inBlocks' ? 50 : 12));
 	};
 
 	const decreasePriceWithAnimation = () => {
-		setFrom(price);
-		setTo(price - +cartItem.price);
 		decreasePrice();
+		setFrom(price);
+		setTo(price - +cartItem.price * (cartItem.size === 'inBlocks' ? 50 : 12));
 	};
 
 	const handleDeleteCartItem = () => {
@@ -41,7 +41,7 @@ export const useCartItemAction = (cartItem: ICartItem) => {
 				'cart',
 				setCartFromLS,
 				setShouldShowEmpty,
-				'Удалено из карзины!'
+				'Удалено из корзины!'
 			);
 			return;
 		}

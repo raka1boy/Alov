@@ -8,7 +8,7 @@ import { useLang } from '@/hooks/useLang';
 import { setIsAddToFavorites } from '@/context/favorites';
 import { $showQuickViewModal } from '@/context/modals/state';
 
-const ProductSizeTableBtn = ({ sizes, type, className }: ISelectedSizes) => {
+const ProductSizeTableButton = ({ sizes, type, className }: ISelectedSizes) => {
 	const { lang, translations } = useLang();
 	const showQuickViewModal = useUnit($showQuickViewModal);
 
@@ -30,4 +30,4 @@ const ProductSizeTableBtn = ({ sizes, type, className }: ISelectedSizes) => {
 	);
 };
 
-export default ProductSizeTableBtn;
+export default ProductSizeTableButton;

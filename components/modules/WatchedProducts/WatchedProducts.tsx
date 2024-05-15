@@ -55,7 +55,7 @@ const WatchedProducts = ({
 								key={item._id}
 								className={styles.watched__slide}
 								style={{ width: isMedia370 ? 240 : isMedia430 ? 280 : 350 }}>
-								<ProductsListItem item={item} />
+								<ProductsListItem item={item}/>
 							</div>
 						))
 					)}

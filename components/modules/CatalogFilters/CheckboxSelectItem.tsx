@@ -23,7 +23,7 @@ const CheckboxSelectItem = ({
 				/>
 				<span
 					className={styles.catalog__filters__list__item__btn__checkbox_text}>
-					{item?.size || item?.colorText}
+					{(item?.size === 'inBlocks' ? 'По блокам' : 'По коробкам') || item?.colorText}
 				</span>
 			</label>
 		</li>

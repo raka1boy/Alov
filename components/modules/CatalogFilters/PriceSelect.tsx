@@ -60,7 +60,7 @@ const PriceSelect = ({
 									<span>{translations[lang].catalog.from}</span>
 									<input
 										type='text'
-										placeholder='130 ₽'
+										placeholder='11 ₽'
 										value={priceFrom}
 										onChange={handleChangePriceFrom}
 									/>
@@ -69,7 +69,7 @@ const PriceSelect = ({
 									<span>{translations[lang].catalog.to}</span>
 									<input
 										type='text'
-										placeholder='6 500 ₽'
+										placeholder='25 ₽'
 										value={priceTo}
 										onChange={handleChangePriceTo}
 									/>

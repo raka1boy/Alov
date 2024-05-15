@@ -47,7 +47,7 @@ const FavoritesListItem = ({ item }: { item: IFavoriteItem }) => {
 		};
 
 		if (!isUserAuth()) {
-			addCartItemToLS(cartItem as unknown as IProduct, item.size, 1);
+			addCartItemToLS(cartItem as unknown as IProduct, item.size, (item.size === 'inBlocks' ? 50 : 12));
 			return;
 		}
 
@@ -65,7 +65,7 @@ const FavoritesListItem = ({ item }: { item: IFavoriteItem }) => {
 			setSpinner: setAddToCartSpinner,
 			productId: item.productId,
 			category: item.category,
-			count: 1,
+			count: (item.size === 'inBlocks' ? 50 : 12),
 			size: item.size,
 			clientId,
 		});
@@ -122,7 +122,7 @@ const FavoritesListItem = ({ item }: { item: IFavoriteItem }) => {
 				</span>
 				<span className={styles.favorites__list__item__info__size}>
 					{item.size?.length
-						? `${translations[lang].catalog.size}: ${item.size.toUpperCase()}`
+						? `${translations[lang].catalog.size}: ${item.size === 'inBlocks' ? 'По блокам' : 'По коробкам'}`
 						: ''}
 				</span>
 				<span className={styles.favorites__list__item__info__price}>

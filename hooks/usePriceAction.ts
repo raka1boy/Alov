@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
 export const usePriceAction = (count: number, initialPrice: number) => {
-  const [price, setPrice] = useState(initialPrice)
+  const [price, setPrice] = useState(initialPrice);
 
   useEffect(() => {
-    setPrice(price * count)
-  }, [])
+    setPrice(initialPrice * count);
+  }, [count]);
 
-  const increasePrice = () => setPrice(price + initialPrice)
-  const decreasePrice = () => setPrice(price - initialPrice)
+  const increasePrice = () => setPrice((prevPrice) => prevPrice + initialPrice);
+  const decreasePrice = () => setPrice((prevPrice) => prevPrice - initialPrice);
 
-  return { price, increasePrice, decreasePrice }
-}
+  return { price, increasePrice, decreasePrice };
+};

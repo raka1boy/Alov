@@ -22,6 +22,6 @@ export const productTypes = [
 
 export const productCategories = ['lighters']
 export const allowedColors = ['purpure', 'yellow', 'orange', 'black', 'white']
-export const allowedSizes = ['s', 'l', 'm', 'xl', 'xxl']
+export const allowedSizes = ['inBlocks', 'inBoxes']
 export const allowedCollectionsCategories = ['lighters']
 export const allowedCollections = ['lighters', 'black', 'casual', 'orange', 'line']

@@ -25,6 +25,7 @@ export interface IProductCounterProps {
   totalCount?: number
   increasePrice?: VoidFunction
   decreasePrice?: VoidFunction
+	selectedSize: string
 }
 
 export interface IAddToCartButtonProps {

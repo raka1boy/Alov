@@ -13,7 +13,7 @@ const AddToCartIcon = ({
 		{isProductInCart ? (
 			<span className={`${className} ${addedClassName}`} />
 		) : (
-			<button className={`btn-reset ${className}`} onClick={callback}>
+			<button className={`button-reset ${className}`} onClick={callback}>
 				{addToCartSpinner ? (
 					<FontAwesomeIcon icon={faSpinner} spin color='#fff' />
 				) : (
