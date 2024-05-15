@@ -4,16 +4,30 @@ export interface IProduct {
 	_id: string;
 	type: string;
 	category: string;
+	collection: string;
 	price: number;
 	name: string;
 	description: string;
-	vendorCode: string;
+	characteristics: { [index: string]: string };
 	images: string[];
+	vendorCode: string;
 	inStock: string;
 	isBestseller: boolean;
 	isNew: boolean;
-	popularity: string;
+	sizes: ISizes;
+	popularity: number;
 	errorMessage?: string;
+}
+
+export interface ISizes {
+	inBlocks: boolean;
+	inBoxes: boolean;
+}
+
+export interface ISelectedSizes {
+	sizes: ISizes;
+	type: string;
+	className?: string;
 }
 
 export interface IBaseEffectProps {

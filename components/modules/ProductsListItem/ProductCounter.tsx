@@ -16,6 +16,7 @@ const ProductCounter = ({
 	decreasePrice,
 	cartItem,
 	updateCountAsync,
+	selectedSize,
 }: IProductCounterProps) => {
 	const [spinner, setSpinner] = useState(false);
 	const [disableIncrease, setDisableIncrease] = useState(false);
@@ -24,7 +25,7 @@ const ProductCounter = ({
 	const currentInitialCount = +cartItem?.count || initialCount || 1;
 
 	useEffect(() => {
-		if (count === 1) {
+		if (count === (selectedSize === 'inBlocks' ? 50 : 12)) {
 			setDisableDecrease(true);
 		} else {
 			setDisableDecrease(false);
@@ -61,20 +62,24 @@ const ProductCounter = ({
 	const increase = async () => {
 		increasePrice && increasePrice();
 		setDisableDecrease(false);
-		setCount(count + 1);
+		if (selectedSize === 'inBlocks') setCount(count + 50);
+		else setCount(count + 12);
 
 		if (updateCountAsync) {
-			updateCountWithRequest(count + 1);
+			if (selectedSize === 'inBlocks') updateCountWithRequest(count + 50);
+			else updateCountWithRequest(count + 12);
 		}
 	};
 
 	const decrease = async () => {
 		decreasePrice && decreasePrice();
 		setDisableIncrease(false);
-		setCount(count - 1);
+		if (selectedSize === 'inBlocks') setCount(count - 50);
+		else setCount(count - 12);
 
 		if (updateCountAsync) {
-			updateCountWithRequest(count - 1);
+			if (selectedSize === 'inBlocks') updateCountWithRequest(count - 50);
+			else updateCountWithRequest(count - 12);
 		}
 	};
 

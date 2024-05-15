@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import { IProductAvailableProps } from '@/types/elements';
 import { useLang } from '@/hooks/useLang';
 import styles from '@/styles/product-list-item/index.module.scss';
@@ -10,11 +9,9 @@ const ProductAvailable = ({ vendorCode, inStock }: IProductAvailableProps) => {
 	return (
 		<div className={styles.product}>
 			<span
-				className={clsx({
-					[`${styles.product__stock}`]: true,
-					[`${styles.product__stock__green}`]: isInStock,
-					[`${styles.product__stock__red}`]: !isInStock,
-				})}>
+				className={`${styles.product__stock} ${
+					isInStock ? styles.product__stock__green : styles.product__stock__red
+				}`}>
 				{isInStock
 					? translations[lang].product.available
 					: translations[lang].product.not_available}

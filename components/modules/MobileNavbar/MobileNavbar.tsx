@@ -12,10 +12,12 @@ import { TAction } from '@/types/types';
 import CatalogMenu from '../Header/CatalogMenu';
 import { $cart, $cartFromLs } from '@/context/cart/state'
 import { useGoodsByAuth } from '@/hooks/useGoodsByAuth'
+import { $favorites, $favoritesFromLS } from '@/context/favorites/state'
 
 const MobileNavbar = () => {
 	const { lang, translations } = useLang();
 	const currentCartByAuth = useGoodsByAuth($cart, $cartFromLs);
+	const currentFavoritesByAuth = useGoodsByAuth($favorites, $favoritesFromLS)
 
 	const handleMenuAction = (action: TAction) => () => {
 		addOverflowHiddenToBody(action === 'openCatalogMenu' ? '0' : '');
@@ -48,6 +50,7 @@ const MobileNavbar = () => {
 					href='/favorites'
 					className='mobile-navbar__button'
 					aria-label='Открыть избранное'>
+					{!!currentFavoritesByAuth.length && <span className='not-empty not-empty-mobile-favorite' />}
 					{translations[lang].breadcrumbs.favorites}
 				</Link>
 				<Link

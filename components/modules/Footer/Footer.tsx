@@ -18,7 +18,7 @@ const Footer = () => {
 							<a href='tel:+79111987771'>+7 (922) 322-22-11</a>
 						</span>
 						<span>
-							<a href='mailto:alov@gmail.com'>alov@gmail.com</a>
+							<a href='mailto:alov.store@gmail.com'>alov.store@gmail.com</a>
 						</span>
 					</div>
 					<ul className='list-reset footer__socials'>

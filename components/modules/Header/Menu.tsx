@@ -1,6 +1,6 @@
-import { closeMenu } from '@/context/modals'
+import { closeMenu } from '@/context/modals';
 import { useLang } from '@/hooks/useLang';
-import { $menuIsOpen } from '@/context/modals/state'
+import { $menuIsOpen } from '@/context/modals/state';
 
 import { useUnit } from 'effector-react';
 import { useState } from 'react';
@@ -21,16 +21,12 @@ import BuyersListItems from './BuyersListItems';
 import ContactsListItems from './ContactsListItems';
 
 const Menu = () => {
-	const [showCatalogList, setShowCatalogList] = useState<boolean>(false);
-	const [showBuyersList, setShowBuyersList] = useState<boolean>(false);
-	const [showContactsList, setShowContactsList] = useState<boolean>(false);
-
+	const [activeListId, setActiveListId] = useState<number>(0);
 	const menuIsOpen = useUnit<boolean>($menuIsOpen);
 
 	const pathName = usePathname();
 
 	const isMedia800 = useMediaQuery(800);
-	const isMedia640 = useMediaQuery(640);
 
 	const { lang, translations } = useLang();
 
@@ -42,7 +38,7 @@ const Menu = () => {
 	const handleCloseMenu = () => {
 		removeOverflowHiddenFromBody();
 		closeMenu();
-		handleShowList(false);
+		handleShowList(0);
 	};
 
 	const handleRedirectToCatalog = (path: string) => {
@@ -53,52 +49,55 @@ const Menu = () => {
 		handleCloseMenu();
 	};
 
-	const handleShowList = (listName: TListName) => {
-		setShowCatalogList(listName === 'catalog');
-		setShowBuyersList(listName === 'buyers');
-		setShowContactsList(listName === 'contacts');
+	const handleShowList = (listId: TListName) => {
+		setActiveListId(listId);
 	};
 
 	const lightersLinks = [
 		{
 			id: 1,
-			text: translations[lang].comparison.flintLighters,
-			href: '/catalog/lighters?offset=0&type=flint-lighter',
+			text: translations[lang].lighters.flintLighters,
+			href: '/catalog/lighters?offset=0&type=flintLighters',
 		},
 		{
 			id: 2,
-			text: translations[lang].comparison.jetFlames,
-			href: '/catalog/cloth?offset=0&type=jet-flame',
+			text: translations[lang].lighters.jetFlames,
+			href: '/catalog/lighters?offset=0&type=jetFlames',
 		},
 		{
 			id: 3,
-			text: translations[lang].comparison.metalFlintLights,
-			href: '/catalog/cloth?offset=0&type=metal-flint-light',
+			text: translations[lang].lighters.metalFlintLights,
+			href: '/catalog/lighters?offset=0&type=metalFlintLights',
 		},
 		{
 			id: 4,
-			text: translations[lang].comparison.metalJets,
-			href: '/catalog/cloth?offset=0&type=metal-jet',
+			text: translations[lang].lighters.metalJets,
+			href: '/catalog/lighters?offset=0&type=metalJets',
 		},
 		{
 			id: 5,
-			text: translations[lang].comparison.metalTurboChargedLighters,
-			href: '/catalog/cloth?offset=0&type=metal-turbocharged-lighter',
+			text: translations[lang].lighters.metalTurboChargedLighters,
+			href: '/catalog/lighters?offset=0&type=metalTurboChargedLighters',
 		},
 		{
 			id: 6,
-			text: translations[lang].comparison.piezoFlashlights,
-			href: '/catalog/cloth?offset=0&type=piezo-flashlight',
+			text: translations[lang].lighters.piezoLighters,
+			href: '/catalog/lighters?offset=0&type=piezoLighters',
 		},
 		{
 			id: 7,
-			text: translations[lang].comparison.turboChargedFlashlights,
-			href: '/catalog/cloth?offset=0&type=turbocharged-flashlight',
+			text: translations[lang].lighters.piezoFlashlights,
+			href: '/catalog/lighters?offset=0&type=piezoFlashlights',
 		},
 		{
 			id: 8,
-			text: translations[lang].comparison.turboChargedLighters,
-			href: '/catalog/cloth?offset=0&type=turbocharged-lighter',
+			text: translations[lang].lighters.turboChargedFlashlights,
+			href: '/catalog/lighters?offset=0&type=turboChargedFlashlights',
+		},
+		{
+			id: 9,
+			text: translations[lang].lighters.turboChargedLighters,
+			href: '/catalog/lighters?offset=0&type=turboChargedLighters',
 		},
 	];
 
@@ -142,8 +141,7 @@ const Menu = () => {
 						className={clsx({
 							['button-reset nav-menu__button']: true,
 							['lang-active']: lang === 'ru',
-						})
-					}
+						})}
 						onClick={() => toggleSwitchLang('ru')}
 						aria-label='Поменять язык на русский'>
 						RU
@@ -165,102 +163,38 @@ const Menu = () => {
 					})}>
 					{!isMedia800 && (
 						<li className='nav-menu__item'>
-							<button
-								className='button-reset list__button'
-								onMouseEnter={() => handleShowList('catalog')}
-								aria-label='Показать каталог'>
-								{translations[lang].main_menu.catalog}
-							</button>
-							<AnimatePresence>
-								{showCatalogList && (
-									<motion.ul
-										initial={{ opacity: 0 }}
-										animate={{ opacity: 1 }}
-										exit={{ opacity: 0 }}
-										className='list-reset nav-menu__accordion'>
-										<li className='accordion__item'>
-											<Accordion
-												title={translations[lang].main_menu.lighters}
-												titleClass='button-reset accordion__title'>
-												<ul className='list-reset accordion__list'>
-													{lightersLinks.map((item) => (
-														<MenuLinkItem
-															key={item.id}
-															item={item}
-															handleRedirectToCatalog={handleRedirectToCatalog}
-														/>
-													))}
-												</ul>
-											</Accordion>
-										</li>
-									</motion.ul>
-								)}
-							</AnimatePresence>
+								<Accordion
+									title={translations[lang].main_menu.lighters}
+									titleClass='button-reset list__button'>
+									<ul className='list-reset accordion__list'>
+									{lightersLinks.map((item) => (
+											<MenuLinkItem
+												key={item.id}
+												item={item}
+												handleRedirectToCatalog={handleRedirectToCatalog}
+											/>
+										))}
+								</ul>
+								</Accordion>
 						</li>
 					)}
 					<li className='nav-menu__item'>
-						{!isMedia640 && (
-							<button
-								className='button-reset list__button'
-								onMouseEnter={() => handleShowList('buyers')}
-								aria-label='Показать модуль "Покупателям"'>
-								{translations[lang].main_menu.buyers}
-							</button>
-						)}
-						{!isMedia640 && (
-							<AnimatePresence>
-								{showBuyersList && (
-									<motion.ul
-										initial={{ opacity: 0 }}
-										animate={{ opacity: 1 }}
-										exit={{ opacity: 0 }}
-										className='list-reset nav-menu__accordion'>
-										<BuyersListItems />
-									</motion.ul>
-								)}
-							</AnimatePresence>
-						)}
-						{isMedia640 && (
-							<Accordion
-								title={translations[lang].main_menu.buyers}
-								titleClass='button-reset list__button'>
-								<ul className='list-reset accordion__list'>
-									<BuyersListItems />
-								</ul>
-							</Accordion>
-						)}
+						<Accordion
+							title={translations[lang].main_menu.buyers}
+							titleClass='button-reset list__button'>
+							<ul className='list-reset accordion__list'>
+								<BuyersListItems />
+							</ul>
+						</Accordion>
 					</li>
 					<li className='nav-menu__item'>
-						{!isMedia640 && (
-							<button
-								className='button-reset list__button'
-								onMouseEnter={() => handleShowList('contacts')}
-								aria-label='Показать модуль "Контакты"'>
-								{translations[lang].main_menu.contacts}
-							</button>
-						)}
-						{!isMedia640 && (
-							<AnimatePresence>
-								{showContactsList && (
-									<motion.ul
-										initial={{ opacity: 0 }}
-										animate={{ opacity: 1 }}
-										exit={{ opacity: 0 }}
-										className='list-reset nav-menu__accordion'>
-										<ContactsListItems />
-									</motion.ul>
-								)}
-							</AnimatePresence>
-						)}
-						{isMedia640 && (
-							<Accordion
-								title={translations[lang].main_menu.contacts}
-								titleClass='button-reset list__button'>
-								<ul className='list-reset accordion__list'>
-									<ContactsListItems />
-								</ul>
-							</Accordion>
-						)}
+						<Accordion
+							title={translations[lang].main_menu.contacts}
+							titleClass='button-reset list__button'>
+							<ul className='list-reset accordion__list'>
+								<ContactsListItems />
+							</ul>
+						</Accordion>
 					</li>
 				</ul>
 			</div>

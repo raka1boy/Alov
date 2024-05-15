@@ -11,10 +11,7 @@ export interface ICatalogCategoryOptions {
     title: string
     href: string
   }[]
-  clothCategoryOptions?: ICategoryOption[]
-  accessoryCategoryOptions?: ICategoryOption[]
-  officeCategoryOptions?: ICategoryOption[]
-  souvenirsCategoryOptions?: ICategoryOption[]
+  lightersCategoryOptions?: ICategoryOption[]
 }
 
 export interface ICategoryOption {
@@ -40,7 +37,7 @@ export interface ISelectItemProps {
   mobileClassName?: string
 }
 
-export interface ISelectBtnProps {
+export interface ISelectButtonProps {
   open: boolean
   toggle: VoidFunction
   dynamicText: string
@@ -50,17 +47,33 @@ export interface ISelectBtnProps {
 
 export interface ICatalogFiltersProps {
   handleApplyFiltersWithPrice: (arg0: string, arg1: string) => void
+  handleApplyFiltersWithSizes: (sizes: string[]) => void
+  handleApplyFiltersWithColors: (sizes: string[]) => void
   handleApplyFiltersBySort: (arg0: string) => void
+}
+
+export interface ISizeOption {
+  id: number
+  size: string
+  checked: boolean
 }
 
 export interface ICheckboxSelectItemProps {
   callback: (arg0: number) => void
   item: {
     id: number
+    size?: string
     colorText?: string
     checked: boolean
   }
   mobileClassName?: string
+}
+
+export interface IColorOption {
+  id: number
+  colorCode: string
+  checked: boolean
+  colorText: string
 }
 
 export interface ISelectInfoItem {

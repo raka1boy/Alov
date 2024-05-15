@@ -10,7 +10,6 @@ import img2 from '@/public/img/lighter-tiger.png';
 import img3 from '@/public/img/lighter-ussr.png';
 import HeroSlide from './HeroSlide';
 import styles from '@/styles/main-page/index.module.scss';
-import stylesForAd from '@/styles/ad/index.module.scss';
 import productSubtitleStyles from '@/styles/productSubtitle/index.module.scss';
 
 import ProductSubtitle from '@/components/elements/ProductSubtitle.tsx/ProductSubtitle';
@@ -21,21 +20,20 @@ const Hero = () => {
 	const slides = [
 		{
 			id: 1,
-			title: `${translations[lang].main_page.lighter} "TODO" ${translations[lang].main_page.autogen}`,
+			title: `${translations[lang].main_page.lighter} «AUTOGEN» ${translations[lang].main_page.autogen}`,
 			image: img1,
 		},
 		{
 			id: 2,
-			title: `${translations[lang].main_page.lighter} "TODO" ${translations[lang].main_page.tiger}`,
+			title: `${translations[lang].main_page.lighter} «TIGER» ${translations[lang].main_page.tiger}`,
 			image: img2,
 		},
 		{
 			id: 3,
-			title: `${translations[lang].main_page.lighter} "TODO" ${translations[lang].main_page.ussr}`,
+			title: `${translations[lang].main_page.lighter} «USSR» ${translations[lang].main_page.ussr}`,
 			image: img3,
 		},
 	];
-
 	const handleSlideClick = (e: SwiperType) => e.slideTo(e.clickedIndex);
 
 	return (
