@@ -96,7 +96,7 @@
       "available": "Available",
       "not_available": "Not available",
       "vendor_code": "Vendor",
-      "size_table": "Size table",
+      "size_table": "Volume table",
       "count": "Count",
       "to_cart": "To cart",
       "to_favorite": "To favorite",
@@ -126,7 +126,7 @@
       "to": "To",
       "rub": "₽",
       "done": "Done",
-      "size": "Size",
+      "size": "Volume",
       "color": "Color",
       "purpure": "Purpure",
       "orange": "Orange",
@@ -144,14 +144,9 @@
       "collection": "Collection"
     },
     "size_table": {
-      "head_circumference": "Example size",
-      "size": "Size",
-      "russian_size": "Russian size",
-      "manufacturer_size": "Manufacturer size",
-      "chest_circumference": "Chest circumference, cm",
-      "waist_circumference": "Waist circumference, cm",
-      "hip_circumference": "Hip circumference, cm",
-      "title": "Size table"
+      "head_circumference": "Example volume",
+      "size": "Volume",
+      "title": "Volume table"
     },
     "auth_popup": {
       "registration_title": "Registration",
@@ -190,7 +185,7 @@
       "payment": "Payment",
       "recipient_details": "Recipient details",
       "name": "Name",
-      "size": "Size",
+      "size": "Volume",
       "color": "Color",
       "count": "Count",
       "sum": "Sum",
@@ -321,7 +316,7 @@
       "available": "Есть в наличии",
       "not_available": "Нет в наличии",
       "vendor_code": "Арт",
-      "size_table": "Таблица размеров",
+      "size_table": "Таблица объёма",
       "count": "Количество",
       "to_cart": "В корзину",
       "to_favorite": "В избранное",
@@ -351,7 +346,7 @@
       "to": "До",
       "rub": "руб.",
       "done": "Готово",
-      "size": "Размер",
+      "size": "Объём",
       "color": "Цвет",
       "purpure": "Пурпурный",
       "orange": "Оранжевый",
@@ -370,13 +365,8 @@
     },
     "size_table": {
       "head_circumference": "Пример количества",
-      "size": "Размер",
-      "russian_size": "Российский размер",
-      "manufacturer_size": "Размер производителя",
-      "chest_circumference": "Обхват груди, в см",
-      "waist_circumference": "Обхват талии, в см",
-      "hip_circumference": "Обхват бедер, в см",
-      "title": "Таблица размеров"
+      "size": "Объём",
+      "title": "Таблица объёма"
     },
     "auth_popup": {
       "registration_title": "Регистрация",
@@ -416,7 +406,7 @@
       "pay": "Оплата",
       "recipient_details": "Данные получателя",
       "name": "Наименование",
-      "size": "Размер",
+      "size": "Объём",
       "color": "Цвет",
       "count": "Количество",
       "sum": "Сумма",

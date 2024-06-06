@@ -50,7 +50,6 @@ const QuickViewModal = () => {
 		handleAddToCart(count);
 	};
 
-
 	return (
 		<div className={styles.modal}>
 			<button
@@ -123,7 +122,12 @@ const QuickViewModal = () => {
 									className={`counter ${styles.modal__right__bottom__counter}`}
 									count={count}
 									totalCount={+product.inStock}
-									initialCount={+(existingItem?.count || (selectedSize === 'inBlocks' ? 50 : 12))}
+									initialCount={
+										+(
+											existingItem?.count ||
+											(selectedSize === 'inBlocks' ? 50 : 1000)
+										)
+									}
 									setCount={setCount}
 									cartItem={existingItem as ICartItem}
 									updateCountAsync={false}

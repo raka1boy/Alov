@@ -178,7 +178,7 @@ const ProductPageContent = () => {
 									initialCount={
 										+(
 											existingItem?.count ||
-											(selectedSize === 'inBlocks' ? 50 : 12)
+											(selectedSize === 'inBlocks' ? 50 : 1000)
 										)
 									}
 									setCount={setCount}

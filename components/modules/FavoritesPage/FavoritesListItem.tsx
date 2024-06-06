@@ -47,7 +47,7 @@ const FavoritesListItem = ({ item }: { item: IFavoriteItem }) => {
 		};
 
 		if (!isUserAuth()) {
-			addCartItemToLS(cartItem as unknown as IProduct, item.size, (item.size === 'inBlocks' ? 50 : 12));
+			addCartItemToLS(cartItem as unknown as IProduct, item.size, (item.size === 'inBlocks' ? 50 : 1000));
 			return;
 		}
 
@@ -65,7 +65,7 @@ const FavoritesListItem = ({ item }: { item: IFavoriteItem }) => {
 			setSpinner: setAddToCartSpinner,
 			productId: item.productId,
 			category: item.category,
-			count: (item.size === 'inBlocks' ? 50 : 12),
+			count: (item.size === 'inBlocks' ? 50 : 1000),
 			size: item.size,
 			clientId,
 		});
