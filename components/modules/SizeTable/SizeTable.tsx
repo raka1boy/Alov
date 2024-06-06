@@ -66,7 +66,7 @@ const SizeTable = () => {
 		},
 		{
 			id: 2,
-			headCircumference: '12-24-36',
+			headCircumference: '1000-2000',
 			manufacturerSize: 'По коробкам',
 			selectHandler: handleSelectBoxesSize,
 			isSelected: isSizeSelected('inBoxes'),
@@ -77,7 +77,10 @@ const SizeTable = () => {
 
 	const handleCloseSizeTable = () => closeSizeTableByCheck(showQuickViewModal);
 
-	const addToCart = () => handleAddToCart(+(cartItemBySize?.count || (selectedSize === 'inBlocks' ? 50: 12)));
+	const addToCart = () =>
+		handleAddToCart(
+			+(cartItemBySize?.count || (selectedSize === 'inBlocks' ? 50 : 1000))
+		);
 
 	const trProps = (item: {
 		id: number;

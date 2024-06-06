@@ -22,7 +22,11 @@ import { setIsAddToFavorites } from '@/context/favorites';
 import { useFavoritesAction } from '@/hooks/useFavoritesAction';
 import styles from '@/styles/product-list-item/index.module.scss';
 
-const ProductsListItem = ({ item, title, selectedSize='inBlocks'}: IProductsListItemProps) => {
+const ProductsListItem = ({
+	item,
+	title,
+	selectedSize = 'inBlocks',
+}: IProductsListItemProps) => {
 	const { lang, translations } = useLang();
 	const isMedia800 = useMediaQuery(800);
 	const isTitleForNew = title === translations[lang].main_page.new_title;
@@ -43,7 +47,11 @@ const ProductsListItem = ({ item, title, selectedSize='inBlocks'}: IProductsList
 
 	const addToCart = () => {
 		setIsAddToFavorites(false);
-		addProductToCartBySizeTable(item, setAddToCartSpinner, (selectedSize === 'inBlocks') ? 50: 12);
+		addProductToCartBySizeTable(
+			item,
+			setAddToCartSpinner,
+			selectedSize === 'inBlocks' ? 50 : 1000
+		);
 	};
 
 	return (
@@ -105,11 +113,11 @@ const ProductsListItem = ({ item, title, selectedSize='inBlocks'}: IProductsList
 						{formatPrice(+item.price)} ₽
 					</span>
 				</div>
-					<button
-						className={`button-reset ${styles.list__item__cart}`}
-						onClick={addToCart}>
-						{translations[lang].product.to_cart}
-					</button>
+				<button
+					className={`button-reset ${styles.list__item__cart}`}
+					onClick={addToCart}>
+					{translations[lang].product.to_cart}
+				</button>
 			</li>
 		</>
 	);

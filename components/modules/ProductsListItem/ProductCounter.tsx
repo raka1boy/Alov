@@ -25,7 +25,7 @@ const ProductCounter = ({
 	const currentInitialCount = +cartItem?.count || initialCount || 1;
 
 	useEffect(() => {
-		if (count === (selectedSize === 'inBlocks' ? 50 : 12)) {
+		if (count === (selectedSize === 'inBlocks' ? 50 : 1000)) {
 			setDisableDecrease(true);
 		} else {
 			setDisableDecrease(false);
@@ -63,11 +63,11 @@ const ProductCounter = ({
 		increasePrice && increasePrice();
 		setDisableDecrease(false);
 		if (selectedSize === 'inBlocks') setCount(count + 50);
-		else setCount(count + 12);
+		else setCount(count + 1000);
 
 		if (updateCountAsync) {
 			if (selectedSize === 'inBlocks') updateCountWithRequest(count + 50);
-			else updateCountWithRequest(count + 12);
+			else updateCountWithRequest(count + 1000);
 		}
 	};
 
@@ -75,11 +75,11 @@ const ProductCounter = ({
 		decreasePrice && decreasePrice();
 		setDisableIncrease(false);
 		if (selectedSize === 'inBlocks') setCount(count - 50);
-		else setCount(count - 12);
+		else setCount(count - 1000);
 
 		if (updateCountAsync) {
 			if (selectedSize === 'inBlocks') updateCountWithRequest(count - 50);
-			else updateCountWithRequest(count - 12);
+			else updateCountWithRequest(count - 1000);
 		}
 	};
 

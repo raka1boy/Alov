@@ -25,13 +25,13 @@ export const useCartItemAction = (cartItem: ICartItem) => {
 	const increasePriceWithAnimation = () => {
 		increasePrice();
 		setFrom(price);
-		setTo(price + +cartItem.price * (cartItem.size === 'inBlocks' ? 50 : 12));
+		setTo(price + +cartItem.price * (cartItem.size === 'inBlocks' ? 50 : 1000));
 	};
 
 	const decreasePriceWithAnimation = () => {
 		decreasePrice();
 		setFrom(price);
-		setTo(price - +cartItem.price * (cartItem.size === 'inBlocks' ? 50 : 12));
+		setTo(price - +cartItem.price * (cartItem.size === 'inBlocks' ? 50 : 1000));
 	};
 
 	const handleDeleteCartItem = () => {
