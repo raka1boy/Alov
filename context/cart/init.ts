@@ -1,43 +1,58 @@
-'use client'
-import { ICartItem } from '@/types/cart'
+import { sample } from 'effector';
 import {
-  cart,
-  getCartItemsFx,
-  addProductsFromLSToCartFx,
-  addProductToCartFx,
-  updateCartItemCountFx,
-  deleteCartItemFx,
-  setCartFromLS,
-  setTotalPrice,
-  setShouldShowEmpty,
-} from '.'
+	loadCartItems,
+	getCartItemsFx,
+	addProductToCart,
+	addProductToCartFx,
+	addProductsFromLSToCart,
+	addProductsFromLSToCartFx,
+	updateCartItemCount,
+	updateCartItemCountFx,
+	deleteProductFromCart,
+	deleteCartItemFx,
+	deleteAllFromCart,
+	deleteAllFromCartFx,
+} from '.';
+import { $cart } from './state';
 
-export const $cart = cart
-  .createStore<ICartItem[]>([])
-  .on(getCartItemsFx.done, (_, { result }) => result)
-  .on(addProductsFromLSToCartFx.done, (_, { result }) => result.items)
-  .on(addProductToCartFx.done, (cart, { result }) => [
-    ...new Map(
-      [...cart, result.newCartItem].map((item) => [item.clientId, item])
-    ).values(),
-  ])
-  .on(updateCartItemCountFx.done, (cart, { result }) =>
-    cart.map((item) =>
-      item._id === result.id ? { ...item, count: result.count } : item
-    )
-  )
-  .on(deleteCartItemFx.done, (cart, { result }) =>
-    cart.filter((item) => item._id !== result.id)
-  )
+sample({
+	clock: loadCartItems,
+	source: $cart,
+	fn: (_, data) => data,
+	target: getCartItemsFx,
+});
 
-export const $cartFromLs = cart
-  .createStore<ICartItem[]>([])
-  .on(setCartFromLS, (_, cart) => cart)
+sample({
+	clock: addProductToCart,
+	source: $cart,
+	fn: (_, data) => data,
+	target: addProductToCartFx,
+});
 
-export const $totalPrice = cart
-  .createStore<number>(0)
-  .on(setTotalPrice, (_, value) => value)
+sample({
+	clock: addProductsFromLSToCart,
+	source: $cart,
+	fn: (_, data) => data,
+	target: addProductsFromLSToCartFx,
+});
 
-export const $shouldShowEmpty = cart
-  .createStore(false)
-  .on(setShouldShowEmpty, (_, value) => value)
+sample({
+	clock: updateCartItemCount,
+	source: $cart,
+	fn: (_, data) => data,
+	target: updateCartItemCountFx,
+});
+
+sample({
+	clock: deleteProductFromCart,
+	source: $cart,
+	fn: (_, data) => data,
+	target: deleteCartItemFx,
+});
+
+sample({
+	clock: deleteAllFromCart,
+	source: {},
+	fn: (_, data) => data,
+	target: deleteAllFromCartFx,
+});

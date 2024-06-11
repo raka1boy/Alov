@@ -11,6 +11,7 @@ import './globalStyles/catalog-menu.css';
 import './globalStyles/search-modal.css';
 import './globalStyles/cart-popup.css';
 import './globalStyles/slick-theme.css';
+import './globalStyles/map.css';
 import './globalStyles/slick.css';
 import './globalStyles/auth-popup.css';
 import './globalStyles/cookie-popup.css';

@@ -25,6 +25,7 @@ import '@/context/auth/init';
 import '@/context/cart/init';
 import '@/context/favorites/init';
 import '@/context/user/init';
+import '@/context/order/init';
 
 const PagesLayout = ({ children }: { children: React.ReactNode }) => {
 	const [isClient, setIsClient] = useState(false);
@@ -56,7 +57,7 @@ const PagesLayout = ({ children }: { children: React.ReactNode }) => {
 				<EarthoOneProvider
 					domain={`${process.env.NEXT_PUBLIC_OAUTH_DOMAIN}`}
 					clientId={`${process.env.NEXT_PUBLIC_OAUTH_CLIENT_ID}`}>
-					<html lang='en'>
+					<html lang='ru'>
 						<body>
 							<Next13ProgressBar height='4px' color='#f9932c' showOnShallow />
 							<Layout>{children}</Layout>

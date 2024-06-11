@@ -70,3 +70,8 @@ export interface IOrderInfoBlock {
   isCorrectPromotionalCode?: boolean
   isOrderPage?: boolean
 }
+
+export interface IOrderInfoBlockProps {
+  isCorrectPromotionalCode?: boolean
+  isOrderPage?: boolean
+}

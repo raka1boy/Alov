@@ -37,3 +37,8 @@ export interface IBaseEffectProps {
 }
 
 export type UseGoodsByAuth<T> = StoreWritable<T>;
+
+export interface IGetGeolocationFx {
+	lat: number;
+	lon: number;
+}

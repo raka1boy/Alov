@@ -4,6 +4,7 @@ import { refreshTokenFx } from '@/context/auth';
 import {
 	addProductToCartFx,
 	addProductsFromLSToCartFx,
+	deleteAllFromCartFx,
 	deleteCartItemFx,
 	getCartItemsFx,
 } from '@/context/cart';
@@ -13,6 +14,7 @@ import {
 	deleteFavoriteItemFx,
 	getFavoriteItemsFx,
 } from '@/context/favorites';
+import { makePaymentFx } from '@/context/order';
 import { loginCheckFx } from '@/context/user';
 import {
 	IAddProductToCartFx,
@@ -23,6 +25,7 @@ import {
 	IAddProductsFromLSToFavoriteFx,
 	IDeleteFavoriteItemsFx,
 } from '@/types/favorites';
+import { IMakePaymentFx } from '@/types/order';
 
 export const handleJWTError = async (
 	errorName: string,
@@ -49,6 +52,17 @@ export const handleJWTError = async (
 						...(payload as IAddProductToCartFx),
 						jwt: newTokens.accessToken,
 					});
+				case 'makePaymentFx':
+					makePaymentFx({
+						...(payload as IMakePaymentFx),
+						jwt: newTokens.accessToken,
+					});
+					break;
+				case 'deleteAllFromCartFx':
+					deleteAllFromCartFx({
+						jwt: newTokens.accessToken,
+					});
+					break;
 				case 'addProductsFromLSToCartFx':
 					return addProductsFromLSToCartFx({
 						...(payload as IAddProductsFromLSToCartFx),
