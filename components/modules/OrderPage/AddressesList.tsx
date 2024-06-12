@@ -2,19 +2,19 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useUnit } from 'effector-react';
 import {
-	getRostelecomOfficesByCityFx,
+	getAlovOfficesByCityFx,
 	setChosenPickupAddressData,
-	setShouldLoadRostelecomData,
+	setShouldLoadAlovData,
 	setShouldShowCourierAddressData,
 } from '@/context/order';
 import {
 	$chosenPickupAddressData,
-	$rostelecomDataByCity,
-	$shouldLoadRostelecomData,
+	$alovDataByCity,
+	$shouldLoadAlovData,
 } from '@/context/order/state';
 import { useLang } from '@/hooks/useLang';
 import { useTTMap } from '@/hooks/useTTMap';
-import { IAddressesListProps, IRostelecomAddressData } from '@/types/order';
+import { IAddressesListProps, IAlovAddressData } from '@/types/order';
 import PickupAddressItem from './PickupAddressItem';
 import styles from '@/styles/order/index.module.scss';
 
@@ -23,34 +23,34 @@ const AddressesList = ({
 	handleSelectAddressByMarkers,
 }: IAddressesListProps) => {
 	const { lang, translations } = useLang();
-	const rostelecomDataByCity = useUnit($rostelecomDataByCity);
+	const alovDataByCity = useUnit($alovDataByCity);
 	const chosenPickupAddressData = useUnit($chosenPickupAddressData);
-	const shouldLoadRostelecomData = useUnit($shouldLoadRostelecomData);
+	const shouldLoadAlovData = useUnit($shouldLoadAlovData);
 	const { handleSelectAddress } = useTTMap();
-	const loadRostelecomDataSpinner = useUnit(
-		getRostelecomOfficesByCityFx.pending
+	const loadAlovDataSpinner = useUnit(
+		getAlovOfficesByCityFx.pending
 	);
 
-	const handleChosenAddressData = (data: Partial<IRostelecomAddressData>) => {
-		setShouldLoadRostelecomData(false);
+	const handleChosenAddressData = (data: Partial<IAlovAddressData>) => {
+		setShouldLoadAlovData(false);
 		setChosenPickupAddressData(data);
 		setShouldShowCourierAddressData(false);
 	};
 
 	return (
 		<>
-			{shouldLoadRostelecomData && (
+			{shouldLoadAlovData && (
 				<>
-					{loadRostelecomDataSpinner && (
+					{loadAlovDataSpinner && (
 						<span
 							className={styles.order__list__item__delivery__inner__spinner}>
 							<FontAwesomeIcon icon={faSpinner} spin color='#fff' size='2x' />
 						</span>
 					)}
-					{!loadRostelecomDataSpinner && (
+					{!loadAlovDataSpinner && (
 						<ul className={`list-reset ${listClassName}`}>
-							{rostelecomDataByCity?.length ? (
-								rostelecomDataByCity.map((item) => (
+							{alovDataByCity?.length ? (
+								alovDataByCity.map((item) => (
 									<PickupAddressItem
 										key={item.place_id}
 										addressItem={item}
@@ -67,7 +67,7 @@ const AddressesList = ({
 					)}
 				</>
 			)}
-			{!!chosenPickupAddressData.address_line1 && !shouldLoadRostelecomData && (
+			{!!chosenPickupAddressData.address_line1 && !shouldLoadAlovData && (
 				<div className={styles.order__list__item__delivery__pickup__choose}>
 					<span>{chosenPickupAddressData.address_line1}</span>
 					<span>

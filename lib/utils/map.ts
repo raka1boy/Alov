@@ -2,9 +2,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 
 import {
-	getRostelecomOfficesByCityFx,
+	getAlovOfficesByCityFx,
 	setChosenPickupAddressData,
-	setShouldLoadRostelecomData,
+	setShouldLoadAlovData,
 } from '@/context/order';
 
 export const handleSelectPickupAddress = async (text: string) => {
@@ -14,9 +14,9 @@ export const handleSelectPickupAddress = async (text: string) => {
 		langFromLS = 'ru';
 	}
 
-	setShouldLoadRostelecomData(true);
+	setShouldLoadAlovData(true);
 
-	const rostelecomData = await getRostelecomOfficesByCityFx({
+	const rostelecomData = await getAlovOfficesByCityFx({
 		city: text.split(' ')[0].replace(',', ''),
 		lang: langFromLS,
 	});

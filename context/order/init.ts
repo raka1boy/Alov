@@ -1,16 +1,16 @@
 import { sample } from 'effector';
 import {
-	getRostelecomOfficesByCity,
-	getRostelecomOfficesByCityFx,
+	getAlovOfficesByCity,
+	getAlovOfficesByCityFx,
 	makePayment,
 	makePaymentFx,
 } from '.';
 
 sample({
-	clock: getRostelecomOfficesByCity,
+	clock: getAlovOfficesByCity,
 	source: {},
 	fn: (_, data) => data,
-	target: getRostelecomOfficesByCityFx,
+	target: getAlovOfficesByCityFx,
 });
 
 sample({

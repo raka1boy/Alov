@@ -1,7 +1,7 @@
 'use client';
-import { IOrderDetailsValues, IRostelecomAddressData } from '@/types/order';
+import { IOrderDetailsValues, IAlovAddressData } from '@/types/order';
 import {
-	getRostelecomOfficesByCityFx,
+	getAlovOfficesByCityFx,
 	order,
 	setCashPaymentTb,
 	setChosenCourierAddressData,
@@ -12,13 +12,13 @@ import {
 	setOnlinePaymentTb,
 	setOrderDetailsValues,
 	setPickupTab,
-	setShouldLoadRostelecomData,
+	setShouldLoadAlovData,
 	setShouldShowCourierAddressData,
 } from '.';
 
-export const $rostelecomDataByCity = order
-	.createStore<IRostelecomAddressData[]>([])
-	.on(getRostelecomOfficesByCityFx.done, (_, { result }) => result);
+export const $alovDataByCity = order
+	.createStore<IAlovAddressData[]>([])
+	.on(getAlovOfficesByCityFx.done, (_, { result }) => result);
 
 export const $pickupTab = order
 	.createStore<boolean>(true)
@@ -33,16 +33,16 @@ export const $mapInstance = order
 	.createStore<any>({})
 	.on(setMapInstance, (_, map) => map);
 
-export const $shouldLoadRostelecomData = order
+export const $shouldLoadAlovData = order
 	.createStore(false)
-	.on(setShouldLoadRostelecomData, (_, value) => value);
+	.on(setShouldLoadAlovData, (_, value) => value);
 
 export const $chosenPickupAddressData = order
-	.createStore<Partial<IRostelecomAddressData>>({})
+	.createStore<Partial<IAlovAddressData>>({})
 	.on(setChosenPickupAddressData, (_, value) => value);
 
 export const $chosenCourierAddressData = order
-	.createStore<Partial<IRostelecomAddressData>>({})
+	.createStore<Partial<IAlovAddressData>>({})
 	.on(setChosenCourierAddressData, (_, value) => value);
 
 export const $shouldShowCourierAddressData = order
@@ -50,7 +50,7 @@ export const $shouldShowCourierAddressData = order
 	.on(setShouldShowCourierAddressData, (_, value) => value);
 
 export const $courierAddressData = order
-	.createStore<IRostelecomAddressData>({} as IRostelecomAddressData)
+	.createStore<IAlovAddressData>({} as IAlovAddressData)
 	.on(setCourierAddressData, (_, value) => value);
 
 export const $onlinePaymentTab = order

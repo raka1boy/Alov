@@ -2,11 +2,11 @@
 import toast from 'react-hot-toast';
 import { createDomain } from 'effector';
 import {
-	IGetRostelecomOfficesByCityFx,
+	IGetAlovOfficesByCityFx,
 	IMakePaymentFx,
 	IOrderDetailsValues,
 	IPaymentNotifyFx,
-	IRostelecomAddressData,
+	IAlovAddressData,
 } from '@/types/order';
 import api from '@/api/apiInstance';
 import { handleJWTError } from '@/lib/utils/errors';
@@ -16,32 +16,31 @@ export const setPickupTab = order.createEvent<boolean>();
 export const setCourierTab = order.createEvent<boolean>();
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const setMapInstance = order.createEvent<any>();
-export const setShouldLoadRostelecomData = order.createEvent<boolean>();
+export const setShouldLoadAlovData = order.createEvent<boolean>();
 export const setChosenPickupAddressData =
-	order.createEvent<Partial<IRostelecomAddressData>>();
+	order.createEvent<Partial<IAlovAddressData>>();
 export const setChosenCourierAddressData =
-	order.createEvent<Partial<IRostelecomAddressData>>();
+	order.createEvent<Partial<IAlovAddressData>>();
 export const setShouldShowCourierAddressData = order.createEvent<boolean>();
-export const getRostelecomOfficesByCity =
-	order.createEvent<IGetRostelecomOfficesByCityFx>();
-export const setCourierAddressData =
-	order.createEvent<IRostelecomAddressData>();
+export const getAlovOfficesByCity =
+	order.createEvent<IGetAlovOfficesByCityFx>();
+export const setCourierAddressData = order.createEvent<IAlovAddressData>();
 export const setOnlinePaymentTb = order.createEvent<boolean>();
 export const setCashPaymentTb = order.createEvent<boolean>();
 export const makePayment = order.createEvent<IMakePaymentFx>();
 export const setOrderDetailsValues = order.createEvent<IOrderDetailsValues>();
 
-export const getRostelecomOfficesByCityFx = order.createEffect(
-	async ({ city, lang }: IGetRostelecomOfficesByCityFx) => {
+export const getAlovOfficesByCityFx = order.createEffect(
+	async ({ city, lang }: IGetAlovOfficesByCityFx) => {
 		try {
 			const apiKey = process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY;
 			const baseUrl = `https://api.geoapify.com/v1/geocode/search?format=json&apiKey=${apiKey}`;
 			const { data } = await api.get(`${baseUrl}&text=${city}&lang=${lang}`);
-			const rostelecomData = await api.get(
-				`${baseUrl}&text=ростелеком&filter=place:${data.results[0].place_id}`
+			const alovData = await api.get(
+				`${baseUrl}&text=Сбер&filter=place:${data.results[0].place_id}`
 			);
 
-			return rostelecomData.data.results;
+			return alovData.data.results;
 		} catch (error) {
 			toast.error((error as Error).message);
 		}

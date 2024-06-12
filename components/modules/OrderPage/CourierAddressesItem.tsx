@@ -7,7 +7,7 @@ import {
 	setChosenPickupAddressData,
 	setCourierTab,
 	setPickupTab,
-	setShouldLoadRostelecomData,
+	setShouldLoadAlovData,
 	setShouldShowCourierAddressData,
 } from '@/context/order';
 import { $courierAddressData } from '@/context/order/state';
@@ -23,7 +23,7 @@ const CourierAddressesItem = () => {
 
 	const handleSelectCourierAddress = () => {
 		setChosenPickupAddressData({});
-		setShouldLoadRostelecomData(false);
+		setShouldLoadAlovData(false);
 		setShouldShowCourierAddressData(true);
 		setPickupTab(false);
 		setCourierTab(true);

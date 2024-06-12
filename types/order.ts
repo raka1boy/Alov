@@ -10,12 +10,12 @@ export interface IOrderCartItemProps {
   position: number
 }
 
-export interface IGetRostelecomOfficesByCityFx {
+export interface IGetAlovOfficesByCityFx {
   city: string
   lang: string
 }
 
-export interface IRostelecomAddressData {
+export interface IAlovAddressData {
   address_line1: string
   address_line2: string
   city: string
@@ -47,9 +47,9 @@ export interface IAddressBBox {
 }
 
 export interface IPickupAddressItemProps {
-  addressItem: IRostelecomAddressData
+  addressItem: IAlovAddressData
   handleSelectAddress: (arg0: IAddressBBox, arg1: IAddressPosition) => void
-  handleChosenAddressData: (arg0: Partial<IRostelecomAddressData>) => void
+  handleChosenAddressData: (arg0: Partial<IAlovAddressData>) => void
 }
 
 export interface IAddressesListProps {

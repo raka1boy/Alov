@@ -20,7 +20,7 @@ import { useTTMap } from '@/hooks/useTTMap';
 import {
 	setChosenCourierAddressData,
 	setCourierAddressData,
-	setShouldLoadRostelecomData,
+	setShouldLoadAlovData,
 	setShouldShowCourierAddressData,
 } from '@/context/order';
 import { useUnit } from 'effector-react';
@@ -28,11 +28,11 @@ import {
 	$chosenPickupAddressData,
 	$courierAddressData,
 	$mapInstance,
-	$rostelecomDataByCity,
+	$alovDataByCity,
 	$shouldShowCourierAddressData,
 } from '@/context/order/state';
 import { $userGeolocation } from '@/context/user/state';
-import { IRostelecomAddressData } from '@/types/order';
+import { IAlovAddressData } from '@/types/order';
 import CourierAddressesItem from './CourierAddressesItem';
 import { getGeolocationFx } from '@/context/user';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
@@ -47,7 +47,7 @@ const MapModal = () => {
 	const shouldLoadMap = useRef(true);
 	const { handleSelectAddress } = useTTMap();
 	const userGeolocation = useUnit($userGeolocation);
-	const rostelecomDataByCity = useUnit($rostelecomDataByCity);
+	const alovDataByCity = useUnit($alovDataByCity);
 	const mapInstance = useUnit($mapInstance);
 	const shouldShowCourierAddressData = useUnit($shouldShowCourierAddressData);
 	const chosenPickupAddressData = useUnit($chosenPickupAddressData);
@@ -177,7 +177,7 @@ const MapModal = () => {
 			'bottom-left'
 		);
 
-		const setMarkersByLocationsData = (data: IRostelecomAddressData[]) => {
+		const setMarkersByLocationsData = (data: IAlovAddressData[]) => {
 			data.forEach((item) => {
 				const sw = new ttMaps.LngLat(item.bbox.lon1, item.bbox.lat1);
 				const ne = new ttMaps.LngLat(item.bbox.lon2, item.bbox.lat2);
@@ -213,11 +213,11 @@ const MapModal = () => {
 		);
 
 		if (!!chosenPickupAddressData.address_line1) {
-			const chosenItem = rostelecomDataByCity.filter(
+			const chosenItem = alovDataByCity.filter(
 				(item) => item.address_line2 === chosenPickupAddressData.address_line2
 			)[0];
 
-			setShouldLoadRostelecomData(false);
+			setShouldLoadAlovData(false);
 			setMarkersByLocationsData([chosenItem]);
 
 			map.setCenter([chosenItem.lon, chosenItem.lat]).zoomTo(12);
@@ -241,8 +241,8 @@ const MapModal = () => {
 			ttSearchBox.setValue(userGeolocation?.features[0].properties.city);
 		}
 
-		if (rostelecomDataByCity.length) {
-			setMarkersByLocationsData(rostelecomDataByCity);
+		if (alovDataByCity.length) {
+			setMarkersByLocationsData(alovDataByCity);
 		}
 
 		return map;
