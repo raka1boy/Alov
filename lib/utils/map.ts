@@ -16,12 +16,12 @@ export const handleSelectPickupAddress = async (text: string) => {
 
 	setShouldLoadAlovData(true);
 
-	const rostelecomData = await getAlovOfficesByCityFx({
+	const alovData = await getAlovOfficesByCityFx({
 		city: text.split(' ')[0].replace(',', ''),
 		lang: langFromLS,
 	});
 
-	return rostelecomData;
+	return alovData;
 };
 
 //@ts-ignore

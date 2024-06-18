@@ -26,12 +26,19 @@ export const useCartAction = (isSizeTable = false) => {
 	);
 	const [addToCartSpinner, setAddToCartSpinner] = useState(false);
 	const [updateCountSpinner, setUpdateCountSpinner] = useState(false);
-	const [count, setCount] = useState(+(existingItem?.count as string) || 1);
+	const [count, setCount] = useState(
+		+(existingItem?.count as string) ||
+			(selectedSize === 'inBlocks' ? 50 : 1000)
+	);
 
 	const handleAddToCart = (countFromCounter?: number) => {
 		if (existingItem) {
 			if (!isUserAuth()) {
-				addCartItemToLS(product, selectedSize, countFromCounter || 1);
+				addCartItemToLS(
+					product,
+					selectedSize,
+					countFromCounter || (selectedSize === 'inBlocks' ? 50 : 1000)
+				);
 				return;
 			}
 
@@ -39,8 +46,8 @@ export const useCartAction = (isSizeTable = false) => {
 			const updatedCountWithSize = !!countFromCounter
 				? +existingItem.count !== countFromCounter
 					? countFromCounter
-					: +existingItem.count + 1
-				: +existingItem.count + 1;
+					: +existingItem.count + (selectedSize === 'inBlocks' ? 50 : 1000)
+				: +existingItem.count + (selectedSize === 'inBlocks' ? 50 : 1000);
 
 			updateCartItemCount({
 				jwt: auth.accessToken,
@@ -48,10 +55,14 @@ export const useCartAction = (isSizeTable = false) => {
 				setSpinner: setUpdateCountSpinner,
 				count: selectedSize.length
 					? updatedCountWithSize
-					: +existingItem.count + 1,
+					: +existingItem.count + (selectedSize === 'inBlocks' ? 50 : 1000),
 			});
 
-			addCartItemToLS(product, selectedSize, countFromCounter || 1);
+			addCartItemToLS(
+				product,
+				selectedSize,
+				countFromCounter || (selectedSize === 'inBlocks' ? 50 : 1000)
+			);
 			return;
 		}
 
@@ -59,7 +70,7 @@ export const useCartAction = (isSizeTable = false) => {
 			addItemToCart(
 				product,
 				setAddToCartSpinner,
-				countFromCounter || 1,
+				countFromCounter || (selectedSize === 'inBlocks' ? 50 : 1000),
 				selectedSize
 			);
 			return;
@@ -68,13 +79,15 @@ export const useCartAction = (isSizeTable = false) => {
 		addProductToCartBySizeTable(
 			product,
 			setAddToCartSpinner,
-			countFromCounter || 1,
+			countFromCounter || (selectedSize === 'inBlocks' ? 50 : 1000),
 			selectedSize
 		);
 	};
 
 	const allCurrentCartItemCount = useMemo(
-		() => currentCartItems.reduce((a, { count }) => a + +count, 0),
+		() =>
+			currentCartItems.reduce((a, { count }) => a + +count, 0) +
+			(selectedSize === 'inBlocks' ? 50 : 1000),
 		[currentCartItems]
 	);
 

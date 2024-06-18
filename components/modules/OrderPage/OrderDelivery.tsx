@@ -17,39 +17,28 @@ import {
 } from '@/context/order/state';
 import OrderTitle from './OrderTitle';
 import TabControls from './TabControls';
-import { setCourierTab, setMapInstance, setPickupTab } from '@/context/order';
+import { setCourierTab, setPickupTab } from '@/context/order';
 import { basePropsForMotion } from '@/constants/motion';
-import { getGeolocationFx, setUserGeolocation } from '@/context/user';
-import { $userGeolocation } from '@/context/user/state';
-import AddressesList from './AddressesList';
-import { addOverflowHiddenToBody, addScriptToHead } from '@/lib/utils/common';
-import {
-	SearchMarkersManager,
-	handleResultClearing,
-	handleResultSelection,
-	handleResultsFound,
-	handleSelectPickupAddress,
-	initSearchMarker,
-} from '@/lib/utils/map';
-import { useTTMap } from '@/hooks/useTTMap';
-import { IAddressBBox } from '@/types/order';
-import { mapOptions } from '@/constants/map';
 import { openMapModal } from '@/context/modals';
 import CourierAddressInfo from './CourierAddressInfo';
 import styles from '@/styles/order/index.module.scss';
+import useScript from '@/hooks/useScript';
 
 const OrderDelivery = () => {
 	const { lang, translations } = useLang();
 	const pickupTab = useUnit($pickupTab);
 	const courierTab = useUnit($courierTab);
 	const [shouldLoadMap, setShouldLoadMap] = useState(false);
-	const userGeolocation = useUnit($userGeolocation);
-	const { handleSelectAddress } = useTTMap();
 	const chosenPickupAddressData = useUnit($chosenPickupAddressData);
 	const chosenCourierAddressData = useUnit($chosenCourierAddressData);
 	const mapRef = useRef() as MutableRefObject<HTMLDivElement>;
-	const labelRef = useRef() as MutableRefObject<HTMLLabelElement>;
 	const shouldShowCourierAddressData = useUnit($shouldShowCourierAddressData);
+	useScript('https://points.boxberry.de/js/boxberry.js');
+	useScript('https://cdn.jsdelivr.net/npm/@cdek-it/widget@3');
+
+	const callbackFunction = (data: any) => {
+		console.log(data);
+	};
 
 	const handlePickupTab = () => {
 		if (pickupTab) {
@@ -58,25 +47,11 @@ const OrderDelivery = () => {
 
 		setPickupTab(true);
 		setCourierTab(false);
-
-		if (chosenPickupAddressData.address_line1) {
-			handleLoadMap(
-				chosenPickupAddressData.city,
-				{
-					lat: chosenPickupAddressData.lat as number,
-					lng: chosenPickupAddressData.lon as number,
-				},
-				true
-			);
-			return;
-		}
-
-		if (userGeolocation?.features) {
-			handleLoadMap(userGeolocation?.features[0].properties.city);
-			return;
-		}
-
-		handleLoadMap();
+		boxberry.open(
+			callbackFunction,
+			process.env.NEXT_PUBLIC_BOXBERRY_API,
+			'Москва'
+		);
 	};
 
 	const handleCourierTab = () => {
@@ -86,119 +61,33 @@ const OrderDelivery = () => {
 
 		setPickupTab(false);
 		setCourierTab(true);
-	};
-
-	const handleOpenMapModal = () => {
-		openMapModal();
-		addOverflowHiddenToBody();
-	};
-
-	useEffect(() => {
-		getUserGeolocation();
-	}, []);
-
-	useEffect(() => {
-		if (shouldLoadMap) {
-			addScriptToHead(
-				'https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.1.2-public-preview.15/services/services-web.min.js'
-			);
-			addScriptToHead(
-				'https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox-web.js'
-			);
-			handleLoadMap();
-		}
-	}, [shouldLoadMap]);
-
-	const getUserGeolocation = () => {
-		const success = async (pos: GeolocationPosition) => {
-			const { latitude, longitude } = pos.coords;
-
-			const result = await getGeolocationFx({ lat: latitude, lon: longitude });
-
-			if (!result) {
-				return;
-			}
-
-			setUserGeolocation(result.data);
-			setShouldLoadMap(true);
-		};
-
-		const error = async (error: GeolocationPositionError) => {
-			setShouldLoadMap(true);
-			toast.error(`${error.code} ${error.message}`);
-		};
-
-		navigator.geolocation.getCurrentPosition(success, error, {
-			enableHighAccuracy: true,
-			timeout: 5000,
-			maximumAge: 0,
+		//@ts-ignore
+		new window.CDEKWidget({
+			from: {
+				country_code: 'RU',
+				city: 'Домодедово',
+				postal_code: 630009,
+				code: 270,
+				address: 'ул. Большевистская, д. 101',
+			},
+			root: 'cdek-map',
+			apiKey: process.env.NEXT_PUBLIC_YANDEX_API_KEY,
+			canChoose: true,
+			servicePath: 'https://some-site.com/service.php',
+			debug: false,
+			defaultLocation: [55.724819136434675, 37.621930349431366],
+			lang: 'rus',
+			currency: 'RUB',
+			onReady() {
+				alert('Виджет загружен');
+			},
+			onCalculate() {
+				alert('Расчет стоимости доставки произведен');
+			},
+			onChoose() {
+				alert('Доставка выбрана');
+			},
 		});
-	};
-
-	const handleLoadMap = async (
-		initialSearchValue = '',
-		initialPosition = {
-			lat: 55.755819,
-			lng: 37.617644,
-		},
-		withMarker = false
-	) => {
-		const ttMaps = await import(`@tomtom-international/web-sdk-maps`);
-
-		const map = ttMaps.map({
-			key: process.env.NEXT_PUBLIC_TOMTOM_API_KEY as string,
-			container: mapRef.current,
-			center: initialPosition,
-			zoom: 10,
-		});
-
-		setMapInstance(map);
-		withMarker &&
-			handleSelectAddress(
-				chosenPickupAddressData.bbox as IAddressBBox,
-				{
-					lat: chosenPickupAddressData.lat as number,
-					lon: chosenPickupAddressData.lon as number,
-				},
-				map
-			);
-
-		initSearchMarker(ttMaps);
-
-		//@ts-ignore
-		const ttSearchBox = new tt.plugins.SearchBox(tt.services, mapOptions);
-
-		const searchBoxHTML = ttSearchBox.getSearchBoxHTML();
-		searchBoxHTML.classList.add('delivery-search-input');
-		labelRef.current.append(searchBoxHTML);
-
-		initialSearchValue && ttSearchBox.setValue(initialSearchValue);
-
-		//@ts-ignore
-		const searchMarkersManager = new SearchMarkersManager(map);
-		//@ts-ignore
-		ttSearchBox.on('tomtom.searchbox.resultsfound', (e) =>
-			handleResultsFound(e, searchMarkersManager, map)
-		);
-		//@ts-ignore
-		ttSearchBox.on('tomtom.searchbox.resultselected', (e) =>
-			handleResultSelection(e, searchMarkersManager, map)
-		);
-		ttSearchBox.on('tomtom.searchbox.resultscleared', () =>
-			handleResultClearing(searchMarkersManager, map, userGeolocation)
-		);
-
-		if (userGeolocation?.features && !withMarker) {
-			ttSearchBox.setValue(userGeolocation?.features[0].properties.city);
-			handleSelectPickupAddress(userGeolocation?.features[0].properties.city);
-
-			map
-				.setCenter([
-					userGeolocation?.features[0].properties.lon,
-					userGeolocation?.features[0].properties.lat,
-				])
-				.zoomTo(10);
-		}
 	};
 
 	return (
@@ -214,42 +103,21 @@ const OrderDelivery = () => {
 					tab2Text={translations[lang].order.courier_delivery}
 				/>
 				{pickupTab && (
-					<motion.div
-						className={styles.order__list__item__delivery__pickup}
-						{...basePropsForMotion}>
-						<div className={styles.order__list__item__delivery__inner}>
-							<label
-								className={styles.order__list__item__delivery__label}
-								ref={labelRef}>
-								<span>{translations[lang].order.search_title}</span>
-							</label>
-							<AddressesList
-								listClassName={styles.order__list__item__delivery__list}
-							/>
-						</div>
-						<div
-							className={styles.order__list__item__delivery__map}
-							ref={mapRef}
-							onClick={handleOpenMapModal}
-						/>
-					</motion.div>
+					<>
+						<motion.div
+							className={styles.order__list__item__delivery__pickup}
+							{...basePropsForMotion}>
+							<p></p>
+						</motion.div>
+					</>
 				)}
 				{courierTab && (
-					<motion.div {...basePropsForMotion}>
-						{!shouldShowCourierAddressData && (
-							<div className={styles.order__list__item__delivery__courier}>
-								<span>{translations[lang].order.where_deliver_order}</span>
-								<span>{translations[lang].order.enter_address_on_map}</span>
-								<button className='btn-reset' onClick={handleOpenMapModal}>
-									{translations[lang].order.map}
-								</button>
-							</div>
-						)}
-						{shouldShowCourierAddressData &&
-							!!chosenCourierAddressData.address_line1 && (
-								// eslint-disable-next-line indent
-								<CourierAddressInfo />
-							)}
+					<motion.div
+						className={styles.order__list__item__delivery__pickup}
+						{...basePropsForMotion}
+						id='cdek-map'
+						style={{ width: 800, height: 600 }}>
+						<p></p>
 					</motion.div>
 				)}
 			</div>
