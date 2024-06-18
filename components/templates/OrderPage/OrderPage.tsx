@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 import Breadcrumbs from '@/components/modules/Breadcrumbs/Breadcrumbs';
 import OrderInfoBlock from '@/components/modules/OrderInfoBlock/OrderInfoBlock';
 import MapModal from '@/components/modules/OrderPage/MapModal';
-import OrderCartItem from '@/components/modules/OrderPage/OrderCartItem';
 import OrderDelivery from '@/components/modules/OrderPage/OrderDelivery';
 import OrderDetailsForm from '@/components/modules/OrderPage/OrderDetailsForm';
 import OrderPayment from '@/components/modules/OrderPage/OrderPayment';
@@ -21,6 +20,8 @@ import { isUserAuth } from '@/lib/utils/common';
 import { checkPaymentFx } from '@/context/order';
 import { handleDeleteAllFromCart } from '@/lib/utils/cart';
 import styles from '@/styles/order/index.module.scss';
+import OrderCartItemTable from '@/components/modules/OrderPage/OrderCartItemTable'
+import OrderCartItemList from '@/components/modules/OrderPage/OrderCartItemList'
 
 const OrderPage = () => {
 	const { getDefaultTextGenerator, getTextGenerator } = useBreadcrumbs('order');
@@ -71,39 +72,38 @@ const OrderPage = () => {
 										orderNumber='1'
 										text={translations[lang].order.order}
 									/>
-									{isMedia1220 ? (
-										<ul
-											className={`list-reset ${styles.order__list__item__list}`}>
-											{currentCartByAuth.map((item, i) => (
-												<OrderCartItem
-													key={item._id || item.clientId}
-													item={item}
-													position={i + 1}
-												/>
-											))}
-										</ul>
-									) : (
-										<table className={styles.order__list__item__table}>
-											<thead>
-												<tr>
-													<th>{translations[lang].order.name}</th>
-													<th>{translations[lang].order.size}</th>
-													<th>{translations[lang].order.color}</th>
-													<th>{translations[lang].order.count}</th>
-													<th>{translations[lang].order.sum}</th>
-												</tr>
-											</thead>
-											<tbody>
-												{currentCartByAuth.map((item, i) => (
-													<OrderCartItem
-														key={item._id || item.clientId}
-														item={item}
-														position={i + 1}
-													/>
-												))}
-											</tbody>
-										</table>
-									)}
+									                  {isMedia1220 ? (
+                    <ul className={`list-reset ${styles.order__list__item__list}`}>
+                      {currentCartByAuth.map((item, i) => (
+                        <OrderCartItemList
+                          key={item._id || item.clientId}
+                          item={item}
+                          position={i + 1}
+                        />
+                      ))}
+                    </ul>
+                  ) : (
+                    <table className={styles.order__list__item__table}>
+                      <thead>
+                        <tr>
+                          <th>{translations[lang].order.name}</th>
+                          <th>{translations[lang].order.size}</th>
+                          <th>{translations[lang].order.color}</th>
+                          <th>{translations[lang].order.count}</th>
+                          <th>{translations[lang].order.sum}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {currentCartByAuth.map((item, i) => (
+                          <OrderCartItemTable
+                            key={item._id || item.clientId}
+                            item={item}
+                            position={i + 1}
+                          />
+                        ))}
+                      </tbody>
+                    </table>
+                  )}
 								</li>
 								<li className={`${styles.order__list__item} order-block`}>
 									<OrderDelivery />
